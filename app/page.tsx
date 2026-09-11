@@ -4,6 +4,57 @@ import ShootingproShowcase from "./components/ui/shootingpro-showcase";
 import SectionWatermark from "./components/ui/section-watermark";
 import YoutubeFeed from "./components/ui/youtube-feed";
 
+const services = [
+  {
+    title: "RAG sur documentation interne",
+    sectors: ["Tous secteurs", "Industrie", "Finance"],
+    problem:
+      "Vos collaborateurs perdent du temps à chercher l'information dans des documents éparpillés : SharePoint, Confluence, drives, wikis internes.",
+    solution:
+      "Un système RAG (Retrieval-Augmented Generation) qui indexe toute votre documentation interne, respecte les permissions existantes, et répond avec citation des sources. Déployable dans Teams, Slack ou en interface dédiée.",
+    impact:
+      "Réduction de 45% du temps de recherche d'information. Adoption massive car intégré dans les outils existants.",
+    tags: ["RAG & Knowledge", "Agents IA", "Data Engineering"],
+    example: {
+      label: "Exemple : mon RAG agentique sur documents relevés",
+      href: "https://docchat-agentic-rag.up.railway.app",
+    },
+  },
+  {
+    title: "Agents IA métier",
+    sectors: ["Finance", "Industrie", "Services B2B"],
+    problem:
+      "Des processus métier répétitifs mobilisent vos équipes sur des tâches à faible valeur ajoutée : saisie, vérification, extraction, classification.",
+    solution:
+      "Des agents IA autonomes qui exécutent des tâches métier complètes : extraction de données depuis des documents, vérification de conformité, génération de rapports, orchestration de workflows multi-étapes.",
+    impact:
+      "Automatisation de 70-80% des tâches répétitives. Les équipes se concentrent sur l'analyse et la décision.",
+    tags: ["Agents IA", "Orchestration", "NLP"],
+  },
+  {
+    title: "Déploiement IA générative en production",
+    sectors: ["PME", "Tous secteurs"],
+    problem:
+      "Vous avez testé des POC avec GPT ou Claude, mais le passage en production bloque : sécurité des données, intégration SI, coûts, fiabilité.",
+    solution:
+      "Architecture production-grade pour l'IA générative : choix du modèle adapté (Claude, Mistral, GPT, open-source), guardrails, monitoring des coûts et de la qualité, intégration dans votre SI existant. Hébergement souverain si nécessaire.",
+    impact:
+      "Passage du POC à la production en 8-12 semaines. Coûts d'inférence optimisés. Monitoring continu de la qualité.",
+    tags: ["IA Générative", "MLOps"],
+  },
+  {
+    title: "Contrôle qualité visuel par IA",
+    sectors: ["Industrie", "Agroalimentaire", "Pharma"],
+    problem:
+      "Le contrôle qualité manuel est lent, coûteux et sujet aux erreurs humaines. Les défauts passent à travers les mailles du filet, surtout en cadence élevée.",
+    solution:
+      "Système de computer vision entraîné sur vos données de production : détection de défauts en temps réel, classification automatique, alertes et traçabilité complète. Déployable sur edge ou dans le cloud.",
+    impact:
+      "Détection de 95%+ des défauts. Réduction de 60% du temps de contrôle. ROI en moins de 6 mois.",
+    tags: ["Computer Vision", "Systèmes prédictifs", "DeepLearning"],
+  },
+];
+
 export default function Home() {
   return (
     <>
@@ -11,30 +62,28 @@ export default function Home() {
       <section className="profile-cover" id="cover">
         <div className="profile-cover-head">
           <span>Développeur 5 ans d'expérience</span>
-          <span>Ingénieur en IA appliquée</span>
+          <span>Applied AI Engineer</span>
           <span>Avignon, France</span>
         </div>
 
         <div className="profile-cover-stage">
           <div className="profile-cover-title">
-            <div className="profile-eyebrow">Faisons connaissance</div>
             <h1 className="profile-h1">
               <span>Julien</span>
               <span style={{ color: "var(--accent)" }}>Lucas.</span>
             </h1>
             <ul className="profile-cover-pills">
-              <li className="profile-cover-pill">Ingénierie en IA appliquée</li>
+              <li className="profile-cover-pill">Ingénierie IA appliquée</li>
               <li className="profile-cover-pill">
                 Développeur 5 ans en startups et scaleups
               </li>
-              <li className="profile-cover-pill">
-                Développement de produits IA
-              </li>
+              <li className="profile-cover-pill">Produits IA</li>
             </ul>
             <p className="profile-tagline">
               Cinq ans à coder pour des startups. Aujourd'hui je construis des{" "}
               <strong>
-                systèmes IA à forte valeur ajouté (agents IA, RAG agentique, LLM)
+                systèmes IA à forte valeur ajouté (agents IA, RAG agentique,
+                LLM)
               </strong>
               , trois produits en prod.
             </p>
@@ -84,10 +133,10 @@ export default function Home() {
             </div>
             <div>
               <p className="intro-lede">
-                Trois produits IA en production, construits seul — du modèle
+                Trois produits IA en production, construits seul, des modèles
                 jusqu'à la facturation. À côté, j'accompagne en freelance des
-                équipes qui veulent passer de la démo au système qui tourne
-                vraiment : agents, RAG, fine-tuning. Le tout depuis un petit
+                équipes et dirigeants de PME qui veulent passer à un système IA
+                en prod : agents, RAG, fine-tuning. Le tout depuis un petit
                 appart à Avignon.
               </p>
             </div>
@@ -159,7 +208,7 @@ export default function Home() {
               <span>Mes produits</span>
             </div>
             <h2 className="cluster-h2">
-              Trois systèmes IA fiables en prod
+              Trois systèmes IA en prod
               <span className="accent">.</span>
             </h2>
             <p className="cluster-lede">
@@ -284,10 +333,10 @@ export default function Home() {
                 </p>
                 <div className="product-stats">
                   <div>
-                    <div className="product-stat-value">
-                      Signaux d'achats Linkedin
+                    <div className="product-stat-value">Signaux d'achats</div>
+                    <div className="product-stat-label">
+                      De leads sur Linkedin
                     </div>
-                    <div className="product-stat-label">Des leads</div>
                   </div>
                   <div>
                     <div className="product-stat-value">Infra email</div>
@@ -323,26 +372,30 @@ export default function Home() {
             </div>
           </div>
           <div className="profile-bleed-txt">
-            <div className="profile-eb">Partie III / Mon CV</div>
+            <div className="profile-eb">Partie III / Mon CV de développeur</div>
             <h3 className="profile-h3">
               Cinq startups et scaleups.{" "}
               <span className="profile-em">
-                Intérim, telecom, épargne, e-learning
+                Intérim disruptée, telecom, épargne, e-learning
               </span>
             </h3>
+            <p>
+              Avant de passer à l&apos;IA, j&apos;ai été développeur pendant
+              cinq ans.
+            </p>
             <div className="bleed-cv" id="scale-ups">
               <dl className="profile-tick">
                 <dt>iziwork</dt>
                 <dd>2020 — 2021</dd>
                 <dt>Reezocar</dt>
                 <dd>2021</dd>
-                <dt>Sewan</dt>
+                <dt>Sewan Group</dt>
                 <dd>2021</dd>
                 <dt>Corum l'Épargne</dt>
                 <dd>2022</dd>
                 <dt>Smartch (Lead)</dt>
                 <dd>2022 — 2023</dd>
-                <dt>Total</dt>
+                <dt className="cv-total">Total</dt>
                 <dd className="profile-accent-word">5 ans</dd>
               </dl>
             </div>
@@ -423,8 +476,8 @@ export default function Home() {
             <p className="profile-funfact-body">
               J'ai eu envie d'aller plus loin que le dev "classique". Je voulais
               comprendre les architectures d'agents, les modèles depuis la
-              backprop jusqu'au RAG agentique évalué hardcore, parce qu'on ne
-              construit pas en confiance ce qu'on n'a pas démonté.
+              backprop jusqu'au RAG agentique, parce qu'on ne construit pas en
+              confiance ce qu'on n'a pas démonté.
             </p>
             <div className="cert-logos">
               <span className="cert-logos-label">Certifié par</span>
@@ -447,17 +500,85 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ─────────────────  V. SERVICES  ───────────────── */}
+      <section
+        className="profile-movement profile-tone-paper profile-no-dropcap"
+        id="services"
+      >
+        <SectionWatermark>05</SectionWatermark>
+        <div className="profile-inner-wide">
+          <div className="profile-meta">
+            <span>Partie V</span>
+            <span>/</span>
+            <span>Services</span>
+          </div>
+          <h2 className="profile-h2">
+            Services. <span className="profile-em">Du POC à la prod</span>
+          </h2>
+          <div className="svc-list">
+            {services.map((s, i) => (
+              <article className="svc-card" key={s.title}>
+                <div className="svc-head">
+                  <span className="svc-num">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="svc-title">{s.title}</h3>
+                  <div className="svc-chips">
+                    {s.sectors.map((sector) => (
+                      <span className="svc-chip" key={sector}>
+                        {sector}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <div className="svc-grid">
+                  <div>
+                    <p className="svc-label">Problème</p>
+                    <p className="svc-text">{s.problem}</p>
+                  </div>
+                  <div>
+                    <p className="svc-label">Solution</p>
+                    <p className="svc-text">{s.solution}</p>
+                  </div>
+                  <div className="svc-impact">
+                    <p className="svc-label">Impact</p>
+                    <p className="svc-text">{s.impact}</p>
+                  </div>
+                </div>
+                <div className="svc-tags">
+                  {s.tags.map((tag) => (
+                    <span className="svc-chip" key={tag}>
+                      {tag}
+                    </span>
+                  ))}
+                  {s.example && (
+                    <a
+                      href={s.example.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="svc-example"
+                    >
+                      {s.example.label} <span aria-hidden="true">↗</span>
+                    </a>
+                  )}
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ─────────────────  VI. POCS / CASE STUDIES  ───────────────── */}
       <section
         className="profile-movement profile-tone-soft profile-no-dropcap"
         id="pocs"
       >
-        <SectionWatermark>05</SectionWatermark>
+        <SectionWatermark>06</SectionWatermark>
         <div className="profile-inner-wide">
           <div className="poc-layout">
             <div className="poc-layout-main">
               <div className="profile-meta">
-                <span>Partie V</span>
+                <span>Partie VI</span>
                 <span>/</span>
                 <span>Études de cas</span>
               </div>
@@ -541,15 +662,16 @@ export default function Home() {
         className="profile-movement profile-tone-paper profile-no-dropcap"
         id="youtube"
       >
-        <SectionWatermark>06</SectionWatermark>
+        <SectionWatermark>07</SectionWatermark>
         <div className="profile-inner-wide">
           <div className="profile-meta">
-            <span>Partie VI</span>
+            <span>Partie VII</span>
             <span>/</span>
             <span>Sur YouTube</span>
           </div>
           <h2 className="profile-h2">
-            J'ai vulgarisé sur Youtube, 12000 abonnés
+            J'ai vulgarisé sur Youtube,
+            <span className="profile-em">12 000 abonnés</span>
           </h2>
           <YoutubeFeed />
           <div style={{ marginTop: 32 }}>
@@ -571,15 +693,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─────────────────  IX. LINKEDIN OUTRO  ───────────────── */}
+      {/* ─────────────────  VIII. CONTACT  ───────────────── */}
       <section
         className="profile-movement profile-tone-deep profile-cta-section profile-no-dropcap"
         id="contact"
       >
-        <SectionWatermark>07</SectionWatermark>
+        <SectionWatermark>08</SectionWatermark>
         <div className="profile-inner-wide">
           <div className="profile-meta">
-            <span>Partie VII</span>
+            <span>Partie VIII</span>
             <span>/</span>
             <span>Me contacter</span>
           </div>

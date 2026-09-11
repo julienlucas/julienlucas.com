@@ -152,6 +152,110 @@ nav.site-nav {
 .nav-links a:hover { background: var(--bg-pill); color: var(--text); }
 .nav-links a.active { background: var(--bg-pill); color: var(--text); }
 
+/* ─── Mobile menu (burger + full-height panel) ─── */
+.nav-burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  width: 40px;
+  height: 40px;
+  margin-right: -8px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  transition: background .2s;
+}
+@media (hover: hover) {
+  .nav-burger:hover { background: var(--bg-pill); }
+}
+.nav-burger span {
+  display: block;
+  width: 20px;
+  height: 1.5px;
+  border-radius: 2px;
+  background: currentColor;
+  transition: transform .3s cubic-bezier(.175,.885,.32,1);
+}
+.nav-burger.is-open span:first-child { transform: translateY(3.75px) rotate(45deg); }
+.nav-burger.is-open span:last-child { transform: translateY(-3.75px) rotate(-45deg); }
+
+/* Absolute (not fixed): the nav's backdrop-filter makes it the containing
+   block, so 100% below is the nav's own height. */
+.nav-mobile {
+  position: absolute;
+  top: calc(100% + 1px);
+  left: 0;
+  right: 0;
+  height: calc(100vh - 100% - 1px);
+  height: calc(100dvh - 100% - 1px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 24px 24px calc(32px + env(safe-area-inset-bottom));
+  background: white;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: opacity .25s ease, transform .25s ease, visibility 0s linear .25s;
+}
+.nav-mobile.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition: opacity .25s ease, transform .25s ease, visibility 0s linear 0s;
+}
+.nav-mobile-sections { list-style: none; }
+.nav-mobile-sections li { border-bottom: 1px solid var(--border); }
+.nav-mobile-sections a {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding: 18px 0;
+  font-family: var(--font-sora), "Sora", system-ui, sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -.03em;
+  line-height: 1.1;
+  color: var(--p-ink);
+}
+.nav-mobile-sections a:hover { color: var(--accent); }
+.nav-mobile-num {
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: .14em;
+  color: var(--accent);
+}
+.nav-mobile-socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+}
+.nav-mobile-socials a {
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+.nav-mobile-socials a:hover { color: var(--text); }
+.nav-mobile a::before { display: none; }
+
+@media (max-width: 880px) {
+  .nav-links { display: none; }
+  .nav-burger { display: flex; }
+  .nav-mobile { display: flex; }
+}
+@media (max-width: 480px) {
+  .nav-inner { padding: 12px 16px; }
+  .nav-mobile { padding-inline: 16px; }
+}
+
 /* ─── Cover / hero ─── */
 .profile-cover {
   min-height: 100vh;
@@ -259,7 +363,7 @@ nav.site-nav {
   color: var(--p-ink);
   background: transparent;
   border: 1px solid var(--p-g-3);
-  border-radius: 4px;
+  border-radius: 0;
   padding: 8px 14px;
   line-height: 1;
   white-space: nowrap;
@@ -540,7 +644,8 @@ nav.site-nav {
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  /* Text column wider so "Deux certifications IA" holds on one line. */
+  grid-template-columns: 1fr 1.3fr;
   gap: clamp(32px, 5vw, 72px);
   align-items: center;
 }
@@ -1085,7 +1190,6 @@ nav.site-nav {
   padding: clamp(96px, 12vw, 180px) clamp(24px, 5vw, 64px);
 }
 .cluster-header {
-  max-width: 720px;
   margin-bottom: clamp(48px, 6vw, 88px);
 }
 .cluster-h2 {
@@ -1104,6 +1208,7 @@ nav.site-nav {
   line-height: 1.7;
   color: var(--p-ink-2);
   margin-top: 20px;
+  max-width: 720px;
 }
 
 .product-section {
@@ -1304,6 +1409,38 @@ nav.site-nav {
 .bleed-cv .profile-tick { margin: 14px 0; }
 .profile-bleed-dark .profile-tick dt { color: #bfbfbf; }
 .profile-bleed-dark .profile-accent-word { color: var(--accent-light); }
+
+/* Timeline markers: a dot per company, a rail linking each dot to the next.
+   Horizontal-only additions, so the list keeps its height. */
+.cv-timeline dt { position: relative; padding-left: 22px; }
+.cv-timeline dt::before,
+.cv-timeline dt::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+.cv-timeline dt::before {
+  top: 15px; /* centred on the first text line (10px padding + half line) */
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1.5px solid var(--accent-light);
+  background: var(--p-g-8);
+  z-index: 1;
+}
+.cv-timeline dt::after {
+  top: 20px;
+  bottom: -22px; /* row gap (2px) + next dot's centre (20px) */
+  left: 4.5px;
+  width: 1px;
+  background: rgba(255, 255, 255, .22);
+}
+/* Last company: filled dot, no rail beyond it. Total is a sum, not a step. */
+.cv-timeline dt:nth-last-of-type(2)::before { background: var(--p-g-8); }
+.cv-timeline dt:nth-last-of-type(2)::after,
+.cv-timeline .cv-total::before,
+.cv-timeline .cv-total::after { display: none; }
+
 .bleed-cv .bleed-cv-aside {
   border-left: 3px solid var(--accent);
   padding: 2px 0 2px 22px;
@@ -1315,6 +1452,92 @@ nav.site-nav {
   line-height: 1.35;
   letter-spacing: -.012em;
   color: #fff;
+}
+
+/* ─── Services (part V) : problème / solution / impact cards ─── */
+.svc-list { display: grid; gap: 20px; }
+.svc-card {
+  padding: clamp(24px, 3vw, 36px);
+  border: 1px solid var(--p-g-2);
+  border-radius: 0;
+  background: #fff;
+}
+.svc-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 16px;
+  margin-bottom: 24px;
+}
+.svc-num {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .14em;
+  color: var(--accent);
+}
+.svc-title {
+  font-weight: 800;
+  font-size: clamp(20px, 2vw, 26px);
+  line-height: 1.2;
+  letter-spacing: -.025em;
+  color: var(--p-ink);
+}
+.svc-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.svc-chip {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  line-height: 1.2;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: 6px 10px;
+  border: 1px solid var(--p-g-2);
+  border-radius: 2px;
+  background: var(--p-paper-2);
+  color: var(--p-ink-2);
+}
+.svc-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px 32px;
+}
+/* Scoped under .svc-card to beat the section-wide `.profile-movement p`. */
+.svc-card .svc-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  line-height: 1.4;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--p-g-4);
+  margin: 0 0 8px;
+}
+.svc-card .svc-text {
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: var(--p-ink-2);
+  margin: 0;
+}
+.svc-card .svc-impact .svc-label { color: var(--accent); }
+.svc-card .svc-impact .svc-text { color: var(--p-ink); }
+.svc-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid var(--p-g-2);
+}
+.svc-example {
+  margin-left: auto;
+  align-self: center;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+@media (max-width: 760px) {
+  .svc-grid { grid-template-columns: 1fr; gap: 18px; }
+  .svc-example { margin-left: 0; margin-top: 6px; }
 }
 
 /* ─── POC section : content + sticky media column ─── */
@@ -2384,6 +2607,8 @@ footer.site-footer {
 .profile-aside.profile-aside-mono,
 .nav-links a,
 .nav-slash,
+.nav-mobile-num,
+.nav-mobile-socials a,
 .profile-sidenav a,
 .cta-btn,
 .yt-meta {

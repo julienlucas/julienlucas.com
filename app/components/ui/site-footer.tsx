@@ -34,7 +34,6 @@ export default function SiteFooter() {
             <a href="#produit-shootingpro">Shootingpro.co</a>
             <a href="#produit-closechat">Closechat.co</a>
             <a href="#produit-prospable">Prospable.com</a>
-            <a href="#pocs">Proof of concepts</a>
           </div>
 
           <div className="footer-col">
@@ -42,6 +41,7 @@ export default function SiteFooter() {
             <a href="#mes-produits">Projets</a>
             <a href="#parcours">Parcours</a>
             <a href="#certifications">Certifications</a>
+            <a href="#services">Services</a>
             <a href="#contact">Contact</a>
           </div>
 
