@@ -5,6 +5,17 @@
   --accent: #266F59;
   --accent-hover: #1E5A48;
   --accent-light: #E8F5F0;
+  /* Composantes RVB : sert a fabriquer halos et ombres teintes en rgba() */
+  --accent-rgb: 38, 111, 89;
+  --ink-rgb: 10, 10, 10;
+
+  /* Elevation : ombres encre, tres basses en opacite (rendu papier) */
+  --lift-1: 0 1px 2px rgba(var(--ink-rgb), .04), 0 8px 24px -14px rgba(var(--ink-rgb), .18);
+  --lift-2: 0 1px 2px rgba(var(--ink-rgb), .05), 0 18px 44px -20px rgba(var(--ink-rgb), .28);
+
+  /* Halo accent : le meme vert, diffuse. Base commune a tous les boutons. */
+  --glow-rest:  0 12px 30px -14px rgba(var(--accent-rgb), .70);
+  --glow-hover: 0 18px 44px -14px rgba(var(--accent-rgb), .95), 0 0 0 5px rgba(var(--accent-rgb), .11);
 
   /* Paper / ink scale */
   --p-paper: #FAFAFA;
@@ -37,7 +48,7 @@
 html { scroll-behavior: smooth; overflow-x: clip; background: var(--p-paper); }
 
 body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: var(--font-body);
   background: var(--p-paper);
   color: var(--text);
   -webkit-font-smoothing: antialiased;
@@ -47,8 +58,9 @@ body {
   overflow-x: clip;
 }
 
-/* Default body text uses system-ui */
-p, li, dd, label, input, textarea, button { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+/* Texte courant et controles de formulaire : police systeme. */
+p, li, dd { font-family: var(--font-body); }
+label, input, textarea, button { font-family: var(--sans); }
 
 /* Explicit Sora on every headline + subheadline */
 h1, h2, h3, h4, h5, h6,
@@ -258,8 +270,8 @@ nav.site-nav {
 
 /* ─── Cover / hero ─── */
 .profile-cover {
-  min-height: 100vh;
-  padding: clamp(16px, 1.6vw, 24px) clamp(24px, 5vw, 64px) 56px;
+  min-height: 100svh;
+  padding: clamp(16px, 1.6vw, 24px) clamp(24px, 5vw, 64px) 76px;
   display: grid;
   grid-template-rows: auto 1fr auto;
   gap: 14px;
@@ -287,7 +299,7 @@ nav.site-nav {
   grid-template-columns: 1.1fr 1fr;
   gap: clamp(40px, 5vw, 80px);
   align-items: stretch;
-  padding: 0 0 24px;
+  padding: 0 0 12px;
   min-width: 0;
   max-width: 100%;
   margin: 0 auto;
@@ -337,7 +349,7 @@ nav.site-nav {
 .profile-tagline {
   font-family: var(--font-sora), "Sora", system-ui, sans-serif;
   font-weight: 300;
-  font-size: clamp(18px, 2vw, 28px);
+  font-size: clamp(18px, 2vw, 22px);
   line-height: 1.3;
   letter-spacing: -.015em;
   max-width: 560px;
@@ -372,8 +384,8 @@ nav.site-nav {
 .profile-portrait {
   position: relative;
   aspect-ratio: 4 / 5;
-  max-height: 82vh;
-  min-height: 480px;
+  max-height: 66vh;
+  min-height: 420px;
   background: var(--p-g-2);
   overflow: hidden;
   margin: 0;
@@ -440,7 +452,7 @@ nav.site-nav {
 .profile-h2 .profile-em { color: var(--p-g-4); font-weight: 400; }
 
 .profile-movement p {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: var(--font-body);
   font-size: clamp(17px, 1.5vw, 21px);
   line-height: 1.62;
   margin: 0 0 26px;
@@ -574,7 +586,7 @@ nav.site-nav {
   text-wrap: pretty;
 }
 .profile-bleed-txt p {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: var(--font-body);
   font-size: clamp(15px, 1.25vw, 18px);
   line-height: 1.6;
   max-width: 46ch;
@@ -692,7 +704,7 @@ nav.site-nav {
 .profile-tone-deep .profile-funfact-title,
 .profile-tone-black .profile-funfact-title { color: #fff; }
 .profile-funfact-body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: var(--font-body);
   font-size: clamp(17px, 1.4vw, 20px);
   line-height: 1.65;
   max-width: 56ch;
@@ -789,7 +801,7 @@ nav.site-nav {
   color: var(--p-ink);
 }
 .profile-fav-desc {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: var(--font-body);
   font-size: 14px;
   line-height: 1.55;
   color: var(--p-g-6);
@@ -896,7 +908,7 @@ nav.site-nav {
   flex-direction: column;
 }
 .profile-book-body p {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: var(--font-body);
   font-size: 15px;
   line-height: 1.6;
   color: var(--p-g-7);
@@ -980,7 +992,7 @@ nav.site-nav {
   font-weight: 400;
 }
 .li-bill-body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: var(--font-body);
   font-size: 16px;
   line-height: 1.6;
   color: rgba(255, 255, 255, .78);
@@ -1152,6 +1164,17 @@ nav.site-nav {
   color: var(--p-g-4);
   text-align: right;
 }
+.chapter-sub {
+  display: block;
+  margin-top: 8px;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: .12em;
+  text-transform: normal;
+  font-family: var(--font-body);
+  color: var(--p-g-3);
+}
 .chapter-arrow {
   font-family: var(--font-editorial);
   font-size: 15px;
@@ -1180,6 +1203,7 @@ nav.site-nav {
     padding: 17px 2px;
   }
   .chapter-tag { grid-column: 2 / 3; text-align: left; margin-top: 7px; }
+  .chapter-sub { margin-top: 6px; font-size: 10px; }
   .chapter-row:hover { padding-left: 8px; }
 }
 
@@ -1410,6 +1434,39 @@ nav.site-nav {
 .profile-bleed-dark .profile-tick dt { color: #bfbfbf; }
 .profile-bleed-dark .profile-accent-word { color: var(--accent-light); }
 
+/* Company logos in front of each name (part III). Small, black and white,
+   on a light tile so transparent and dark-background logos read the same. */
+.cv-logos dt {
+  display: flex;
+  align-items: flex-start; /* stays on the first line when the name wraps */
+  gap: 10px;
+}
+.cv-logo {
+  flex: none;
+  margin-top: -2px; /* optical centring on the first line of the name */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background: #e8e8e8;
+  overflow: hidden;
+}
+.cv-logo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: grayscale(1);
+  transition: filter .3s ease;
+}
+.cv-logos dt:hover .cv-logo img { filter: grayscale(0); }
+.cv-logos .cv-total { padding-left: 30px; }
+@media (max-width: 600px) {
+  .cv-logo { width: 18px; height: 18px; border-radius: 4px; }
+  .cv-logos .cv-total { padding-left: 28px; }
+}
+
 /* Timeline markers: a dot per company, a rail linking each dot to the next.
    Horizontal-only additions, so the list keeps its height. */
 .cv-timeline dt { position: relative; padding-left: 22px; }
@@ -1452,92 +1509,6 @@ nav.site-nav {
   line-height: 1.35;
   letter-spacing: -.012em;
   color: #fff;
-}
-
-/* ─── Services (part V) : problème / solution / impact cards ─── */
-.svc-list { display: grid; gap: 20px; }
-.svc-card {
-  padding: clamp(24px, 3vw, 36px);
-  border: 1px solid var(--p-g-2);
-  border-radius: 0;
-  background: #fff;
-}
-.svc-head {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 12px 16px;
-  margin-bottom: 24px;
-}
-.svc-num {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: .14em;
-  color: var(--accent);
-}
-.svc-title {
-  font-weight: 800;
-  font-size: clamp(20px, 2vw, 26px);
-  line-height: 1.2;
-  letter-spacing: -.025em;
-  color: var(--p-ink);
-}
-.svc-chips { display: flex; flex-wrap: wrap; gap: 6px; }
-.svc-chip {
-  font-family: var(--mono);
-  font-size: 10.5px;
-  line-height: 1.2;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-  padding: 6px 10px;
-  border: 1px solid var(--p-g-2);
-  border-radius: 2px;
-  background: var(--p-paper-2);
-  color: var(--p-ink-2);
-}
-.svc-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px 32px;
-}
-/* Scoped under .svc-card to beat the section-wide `.profile-movement p`. */
-.svc-card .svc-label {
-  font-family: var(--mono);
-  font-size: 11px;
-  line-height: 1.4;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--p-g-4);
-  margin: 0 0 8px;
-}
-.svc-card .svc-text {
-  font-size: 14.5px;
-  line-height: 1.65;
-  color: var(--p-ink-2);
-  margin: 0;
-}
-.svc-card .svc-impact .svc-label { color: var(--accent); }
-.svc-card .svc-impact .svc-text { color: var(--p-ink); }
-.svc-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 24px;
-  padding-top: 18px;
-  border-top: 1px solid var(--p-g-2);
-}
-.svc-example {
-  margin-left: auto;
-  align-self: center;
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-}
-@media (max-width: 760px) {
-  .svc-grid { grid-template-columns: 1fr; gap: 18px; }
-  .svc-example { margin-left: 0; margin-top: 6px; }
 }
 
 /* ─── POC section : content + sticky media column ─── */
@@ -2232,7 +2203,7 @@ nav.site-nav {
   margin: 0;
 }
 .poc-card-desc {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: var(--font-body);
   font-size: 14px;
   line-height: 1.55;
   color: var(--p-g-6);
@@ -2357,7 +2328,7 @@ nav.site-nav {
   gap: 18px;
 }
 .uc-list li {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: var(--font-body);
   font-size: 17px;
   line-height: 1.55;
   color: var(--p-g-7);
@@ -2494,7 +2465,7 @@ nav.site-nav {
 }
 .cta-btn:hover { background: var(--accent-hover); }
 .cta-footnote {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: var(--font-body);
   font-size: 13px;
   line-height: 1.5;
   color: var(--p-g-4);
@@ -2554,7 +2525,7 @@ footer.site-footer {
 .footer-col a::before { display: none; }
 .footer-col a:hover { color: var(--accent); transform: translateX(4px); }
 .footer-about p {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: var(--font-body);
   font-size: 15px;
   line-height: 1.6;
   color: var(--text-2);
@@ -2950,4 +2921,368 @@ footer.site-footer {
   .lk-page { padding: 40px 16px 56px; }
   .lk-name { font-size: 26px; }
   .lk-feature-title { font-size: 17px; }
+}
+
+/* ══════════════════════════════════════════════════════════
+   COUCHE DE FINITION
+   Une passe de detail par-dessus le systeme existant : halo des
+   boutons, filets accent au survol, elevation des cartes, grain
+   papier, anneaux de focus. Rien qui change la mise en page —
+   uniquement des etats et des textures.
+   ══════════════════════════════════════════════════════════ */
+
+/* ─── 1. CTA du hero : le bouton principal du site ───
+   Un halo vert porte en box-shadow, qui se densifie au survol, plus
+   un reflet qui balaie le bouton — fait en background-image, donc
+   sans element supplementaire. Aucune animation au repos. */
+.cover-cta {
+  background-color: var(--accent);
+  background-image: linear-gradient(
+    105deg,
+    transparent 36%,
+    rgba(255, 255, 255, .26) 47%,
+    rgba(255, 255, 255, .06) 55%,
+    transparent 64%
+  );
+  background-size: 250% 100%;
+  background-position: 165% 0;
+  background-repeat: no-repeat;
+  box-shadow: var(--glow-rest), inset 0 1px 0 rgba(255, 255, 255, .16);
+  transition:
+    background-color .22s ease,
+    background-position .8s cubic-bezier(.22, .61, .36, 1),
+    box-shadow .3s ease,
+    transform .25s ease;
+}
+.cover-cta:hover {
+  background-color: var(--accent-hover);
+  background-position: -55% 0;
+  box-shadow: var(--glow-hover), inset 0 1px 0 rgba(255, 255, 255, .2);
+  transform: translateY(-2px);
+}
+.cover-cta:active { transform: translateY(0); box-shadow: var(--glow-rest); }
+
+/* ─── 2. Meme famille, en plus discret ───
+   Le bouton du formulaire et le canal de contact principal
+   heritent du halo, dose plus bas : ils ne sont pas le CTA du hero. */
+.cta-btn {
+  box-shadow: 0 8px 22px -14px rgba(var(--accent-rgb), .8);
+  transition: background .2s ease, box-shadow .28s ease, transform .2s ease;
+}
+.cta-btn:hover {
+  box-shadow: 0 14px 30px -14px rgba(var(--accent-rgb), .95);
+  transform: translateY(-1px);
+}
+.cta-btn:active { transform: translateY(0); }
+
+/* Sur fond sombre le halo vert ne se lit pas : on passe au vert clair. */
+.ct-item-primary {
+  box-shadow: 0 12px 34px -22px rgba(232, 245, 240, .55);
+  transition:
+    border-color .2s ease,
+    background-color .2s ease,
+    box-shadow .3s ease,
+    transform .25s ease;
+}
+.ct-item-primary:hover {
+  box-shadow: 0 16px 40px -20px rgba(232, 245, 240, .8);
+}
+
+/* ─── 3. Lignes editoriales : un filet accent qui se deroule ───
+   Les rangs « Ce que j'ai construis » et la liste des POCs partagent
+   le meme filet 1px gris. Au survol il est repeint en accent, de
+   gauche a droite, dans le sens de lecture. */
+.chapter-row::after,
+.poc-list-item::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform .5s cubic-bezier(.22, .61, .36, 1);
+  pointer-events: none;
+}
+.chapter-row:hover::after,
+.poc-list-item:hover::after { transform: scaleX(1); }
+.chapter-row { position: relative; }
+
+/* ─── 4. Indicatif produit : pastille d'etat ───
+   Carre plein = en production, carre creux = en pause. La forme
+   porte l'info, la couleur ne fait que la confirmer. */
+.chapter-sub::before {
+  content: "";
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  margin-right: 9px;
+  vertical-align: 1px;
+  background: var(--accent);
+}
+.chapter-sub[data-state="paused"] {
+  color: var(--p-g-4);
+}
+.chapter-sub[data-state="paused"]::before {
+  background: transparent;
+  box-shadow: inset 0 0 0 1px var(--p-g-4);
+}
+.chapter-row:hover .chapter-sub { color: var(--p-ink-2); }
+
+/* ─── 5. Cartes : elevation au survol ─── */
+.poc-card { transition: border-color .2s ease, box-shadow .35s ease, transform .35s cubic-bezier(.22, .61, .36, 1); }
+.poc-card:hover { box-shadow: var(--lift-1); transform: translateY(-3px); }
+
+/* ─── 6. Pastilles du hero : elles reagissent enfin ─── */
+.profile-cover-pill {
+  transition: border-color .25s ease, color .25s ease, background-color .25s ease, transform .25s ease;
+}
+.profile-cover-pill:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background-color: rgba(var(--accent-rgb), .045);
+  transform: translateY(-2px);
+}
+
+/* ─── 7. Grain papier sur la couverture ───
+   Un bruit tres bas en opacite, en multiply : de pres on lit une
+   texture d'impression, de loin le fond reste plat. */
+.profile-cover::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: .038;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
+/* ─── 8. Chiffres : chasse fixe ───
+   Les stats et les compteurs ne doivent plus danser d'un chiffre
+   a l'autre (utile sur les valeurs qui s'animent ou se mettent a jour). */
+.product-stat-value,
+.li-bill-num,
+.chapter-num,
+.product-eyebrow .count,
+.profile-year-number,
+.profile-pull-number {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+/* ─── 9. Anneaux de focus ───
+   Visible au clavier uniquement, jamais a la souris. Sur fond
+   sombre on bascule sur le vert clair pour garder le contraste. */
+/* Pas de border-radius ici : l'anneau epouse deja le rayon de
+   l'element, et l'imposer aplatirait le CTA arrondi du hero. */
+:where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+.profile-tone-deep :focus-visible,
+.profile-tone-black :focus-visible,
+.profile-bleed-dark :focus-visible {
+  outline-color: var(--accent-light);
+}
+.cover-cta:focus-visible { outline-offset: 5px; }
+
+/* ─── 10. Mouvement reduit ───
+   Halo, balayage et deplacements sont du confort : on les coupe
+   pour qui a demande moins d'animation. Les changements de
+   couleur, eux, restent (ils portent l'information). */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .cover-cta,
+  .cta-btn,
+  .poc-card,
+  .profile-cover-pill,
+  .ct-item-primary { transition-duration: .01ms; }
+  .cover-cta:hover,
+  .cta-btn:hover,
+  .poc-card:hover,
+  .profile-cover-pill:hover { transform: none; }
+  .chapter-row::after,
+  .poc-list-item::after { transition: none; }
+}
+
+/* ══════════════════════════════════════════════════════════
+   CONTENU : disponibilite, stacks, etude de cas
+   ══════════════════════════════════════════════════════════ */
+
+/* ─── Disponibilite en pied de couverture ───
+   Point vert + libelle : l'info se lit avant meme d'etre lue. */
+.cover-avail {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--accent);
+  font-weight: 700;
+}
+.cover-avail-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 3px rgba(var(--accent-rgb), .16);
+  flex-shrink: 0;
+}
+/* Trois libelles au lieu de deux : on laisse le pied respirer. */
+.profile-cover-foot { gap: 16px 32px; }
+
+.li-bill-avail {
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, .62);
+  margin: 6px 0 0;
+  max-width: 52ch;
+}
+
+/* ─── Stack technique sous chaque produit ───
+   Un filet, un libelle en mono, puis la liste brute : c'est fait
+   pour etre scanne (et trouve par un Ctrl+F sur « LangGraph »). */
+.product-stack {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 14px;
+  margin-top: 28px;
+  padding-top: 16px;
+  border-top: 1px solid var(--p-g-2);
+  max-width: 56ch;
+}
+.product-stack-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+.product-stack-items {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  line-height: 1.75;
+  letter-spacing: .01em;
+  color: var(--p-ink-2);
+}
+
+/* ─── Etude de cas ───
+   Meme gabarit que les produits, mais signalee comme non
+   commercialisee : filet accent a gauche et badge explicite. */
+.product-section-case {
+  position: relative;
+  padding-left: clamp(18px, 2.4vw, 34px);
+  background: linear-gradient(
+    90deg,
+    rgba(var(--accent-rgb), .045),
+    transparent 62%
+  );
+}
+.product-section-case::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--accent);
+}
+.case-badge {
+  display: inline-block;
+  margin-bottom: 16px;
+  padding: 6px 12px;
+  border: 1px solid var(--accent);
+  font-family: var(--mono);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: rgba(var(--accent-rgb), .06);
+}
+.product-section-case .case-bench {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--p-ink-2);
+  margin-top: 14px;
+  padding-left: 14px;
+  border-left: 2px solid var(--p-g-3);
+  max-width: 46ch;
+}
+.product-section-case .case-bench strong { color: var(--p-ink); }
+
+/* Troisieme etat de l'indicatif produit : demo publique.
+   Carre creux mais accent — ni « en prod », ni « en pause ». */
+.chapter-sub[data-state="demo"]::before {
+  background: transparent;
+  box-shadow: inset 0 0 0 1px var(--accent);
+}
+
+/* ─── Seconde timeline : la formation ───
+   Meme gabarit que la premiere (.profile-tick porte deja ses filets
+   haut et bas), precedee d'un libelle qui dit pourquoi elle est a
+   part : ce n'est pas une mission en entreprise. */
+/* Les deux tableaux forment un seul bloc continu. La premiere timeline
+   perd son filet bas ET son rembourrage bas ; la seconde n'a ni filet
+   haut ni rembourrage haut. Il ne reste donc aucune ligne ni aucun
+   blanc entre les deux : seul le libelle « En parallele » les separe,
+   et le filet bas du second tableau ferme l'ensemble. */
+/* Le filet bas du premier tableau reste : c'est LUI la separation
+   entre les deux timelines. Seules la marge et le rembourrage bas
+   tombent, pour que le second tableau vienne juste dessous. */
+.bleed-cv .profile-tick.cv-table-lead {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+/* La colonne des libelles prend plus de place que celle des annees :
+   « 40 developpeurs formes » tient alors sur une seule ligne. */
+.bleed-cv .profile-tick {
+  grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+}
+.bleed-cv-aside-table { margin-top: 0; }
+.bleed-cv-aside-table .profile-tick {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+/* Le dernier « dd » du premier tableau fournit deja 16px : le libelle
+   n'a besoin que du complement pour ne pas coller au total. */
+.bleed-cv-aside-table .bleed-cv-second-label { margin-top: 10px; }
+.bleed-cv-second-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .26em;
+  text-transform: uppercase;
+  color: var(--p-g-4);
+  margin-bottom: 2px;
+}
+.profile-bleed-dark .bleed-cv-second-label { color: rgba(255, 255, 255, .45); }
+
+/* ─── Precision chiffree sous une entree de timeline ─── */
+.cv-note {
+  display: block;
+  white-space: nowrap;
+  margin-top: 4px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--p-g-4);
+}
+.profile-bleed-dark .cv-note { color: rgba(255, 255, 255, .5); }
+.profile-bleed-dark .profile-tick dt a { color: #fff; }
+.profile-bleed-dark .profile-tick dt a:hover { color: var(--accent-light); }
+.cv-ext { margin-left: 6px; font-size: .85em; opacity: .7; }
+
+@media (max-width: 760px) {
+  .product-stack { margin-top: 22px; gap: 4px 10px; }
+  .product-section-case { padding-left: 14px; }
 }

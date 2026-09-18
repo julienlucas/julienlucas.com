@@ -15,10 +15,9 @@ const items: Item[] = [
   { id: "mes-produits",   label: "II. Mes produits",   tone: "light" },
   { id: "parcours",       label: "III. Parcours & CV", tone: "dark" },
   { id: "certifications", label: "IV. Certifications", tone: "light" },
-  { id: "services",       label: "V. Services",        tone: "light" },
-  { id: "pocs",           label: "VI. POCs",           tone: "light" },
-  { id: "youtube",        label: "VII. YouTube",       tone: "light" },
-  { id: "contact",        label: "VIII. Contact",      tone: "light" },
+  { id: "pocs",           label: "V. Études de cas",  tone: "light" },
+  { id: "youtube",        label: "VI. YouTube",        tone: "light" },
+  { id: "contact",        label: "VII. Contact",       tone: "light" },
 ];
 
 const DARK_TONE_CLASSES = [

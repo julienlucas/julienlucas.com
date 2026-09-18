@@ -41,7 +41,7 @@ export default function SiteFooter() {
             <a href="#mes-produits">Projets</a>
             <a href="#parcours">Parcours</a>
             <a href="#certifications">Certifications</a>
-            <a href="#services">Services</a>
+            <a href="#pocs">Études de cas</a>
             <a href="#contact">Contact</a>
           </div>
 

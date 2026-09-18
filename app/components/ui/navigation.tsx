@@ -13,9 +13,9 @@ interface NavItem {
 
 const items: NavItem[] = [
   { href: "#cover", label: "Accueil" },
-  { href: "#mes-produits", label: "Projets" },
+  { href: "#mes-produits", label: "Produits IA" },
   { href: "#parcours", label: "Parcours" },
-  { href: "#services", label: "Services" },
+  { href: "#pocs", label: "Études de cas" },
   { href: "https://github.com/julienlucas", label: "GitHub", external: true },
   { href: "#contact", label: "Contact" },
 ];

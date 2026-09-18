@@ -4,56 +4,14 @@ import ShootingproShowcase from "./components/ui/shootingpro-showcase";
 import SectionWatermark from "./components/ui/section-watermark";
 import YoutubeFeed from "./components/ui/youtube-feed";
 
-const services = [
-  {
-    title: "RAG sur documentation interne",
-    sectors: ["Tous secteurs", "Industrie", "Finance"],
-    problem:
-      "Vos collaborateurs perdent du temps à chercher l'information dans des documents éparpillés : SharePoint, Confluence, drives, wikis internes.",
-    solution:
-      "Un système RAG (Retrieval-Augmented Generation) qui indexe toute votre documentation interne, respecte les permissions existantes, et répond avec citation des sources. Déployable dans Teams, Slack ou en interface dédiée.",
-    impact:
-      "Réduction de 45% du temps de recherche d'information. Adoption massive car intégré dans les outils existants.",
-    tags: ["RAG & Knowledge", "Agents IA", "Data Engineering"],
-    example: {
-      label: "Exemple : mon RAG agentique sur documents relevés",
-      href: "https://docchat-agentic-rag.up.railway.app",
-    },
-  },
-  {
-    title: "Agents IA métier",
-    sectors: ["Finance", "Industrie", "Services B2B"],
-    problem:
-      "Des processus métier répétitifs mobilisent vos équipes sur des tâches à faible valeur ajoutée : saisie, vérification, extraction, classification.",
-    solution:
-      "Des agents IA autonomes qui exécutent des tâches métier complètes : extraction de données depuis des documents, vérification de conformité, génération de rapports, orchestration de workflows multi-étapes.",
-    impact:
-      "Automatisation de 70-80% des tâches répétitives. Les équipes se concentrent sur l'analyse et la décision.",
-    tags: ["Agents IA", "Orchestration", "NLP"],
-  },
-  {
-    title: "Déploiement IA générative en production",
-    sectors: ["PME", "Tous secteurs"],
-    problem:
-      "Vous avez testé des POC avec GPT ou Claude, mais le passage en production bloque : sécurité des données, intégration SI, coûts, fiabilité.",
-    solution:
-      "Architecture production-grade pour l'IA générative : choix du modèle adapté (Claude, Mistral, GPT, open-source), guardrails, monitoring des coûts et de la qualité, intégration dans votre SI existant. Hébergement souverain si nécessaire.",
-    impact:
-      "Passage du POC à la production en 8-12 semaines. Coûts d'inférence optimisés. Monitoring continu de la qualité.",
-    tags: ["IA Générative", "MLOps"],
-  },
-  {
-    title: "Contrôle qualité visuel par IA",
-    sectors: ["Industrie", "Agroalimentaire", "Pharma"],
-    problem:
-      "Le contrôle qualité manuel est lent, coûteux et sujet aux erreurs humaines. Les défauts passent à travers les mailles du filet, surtout en cadence élevée.",
-    solution:
-      "Système de computer vision entraîné sur vos données de production : détection de défauts en temps réel, classification automatique, alertes et traçabilité complète. Déployable sur edge ou dans le cloud.",
-    impact:
-      "Détection de 95%+ des défauts. Réduction de 60% du temps de contrôle. ROI en moins de 6 mois.",
-    tags: ["Computer Vision", "Systèmes prédictifs", "DeepLearning"],
-  },
-];
+function CvLogo({ src, alt }: { src: string; alt: string }) {
+  return (
+    <span className="cv-logo" aria-hidden="true">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={src} alt={alt} loading="lazy" />
+    </span>
+  );
+}
 
 export default function Home() {
   return (
@@ -80,12 +38,11 @@ export default function Home() {
               <li className="profile-cover-pill">Produits IA</li>
             </ul>
             <p className="profile-tagline">
-              Cinq ans à coder pour des startups. Aujourd'hui je construis des{" "}
+              Cinq ans à coder pour des startups et scaleups. Aujourd'hui je construis des{" "}
               <strong>
-                systèmes IA à forte valeur ajouté (agents IA, RAG agentique,
-                LLM)
+                systèmes IA de bout en bout en production (agents IA, RAG agentique, LLM)
               </strong>
-              , trois produits en prod.
+              , trois produits IA en prod.
             </p>
             <a href="#contact" className="cover-cta">
               <span>Discuter d&apos;un projet</span>
@@ -105,7 +62,14 @@ export default function Home() {
         </div>
 
         <div className="profile-cover-foot">
-          <span>Merci Claude Code pour le design</span>
+          <span className="cover-avail">
+            <span className="cover-avail-dot" aria-hidden="true" />
+            Disponible · Freelance ou CDI
+          </span>
+          <span>
+            Basé à Avignon · Sur site 2-3 j/semaine : Aix, Marseille,
+            Montpellier, Lyon, Paris
+          </span>
           <span>Faites défiler ↓</span>
         </div>
       </section>
@@ -128,16 +92,16 @@ export default function Home() {
               <h2 className="intro-h2">
                 Ce que j'ai
                 <br />
-                construis en IA<span className="accent">.</span>
+                construis<span className="accent">.</span>
               </h2>
             </div>
             <div>
               <p className="intro-lede">
-                Trois produits IA en production, construits seul, des modèles
-                jusqu'à la facturation. À côté, j'accompagne en freelance des
-                équipes et dirigeants de PME qui veulent passer à un système IA
-                en prod : agents, RAG, fine-tuning. Le tout depuis un petit
-                appart à Avignon.
+                Trois produits IA en production construits de bout en bout
+                seul, plus une étude de cas benchmarkée sur FinanceBench. À
+                côté, j'accompagne en freelance des équipes qui veulent
+                construire un système IA en prod : agents, RAG, fine-tuning. Le
+                tout depuis un petit appart à Avignon.
               </p>
             </div>
           </div>
@@ -146,7 +110,12 @@ export default function Home() {
             <div className="chapter-group-label">Mes produits en prod</div>
             <a href="#produit-shootingpro" className="chapter-row">
               <span className="chapter-num">01</span>
-              <span className="chapter-title">Shootingpro.co</span>
+              <span className="chapter-title">
+                Shootingpro.co
+                <span className="chapter-sub" data-state="live">
+                  SaaS · Fine-tuning LoRA Flux 1
+                </span>
+              </span>
               <span className="chapter-tag">Portraits IA</span>
               <span className="chapter-arrow" aria-hidden="true">
                 ↗
@@ -154,15 +123,27 @@ export default function Home() {
             </a>
             <a href="#produit-closechat" className="chapter-row">
               <span className="chapter-num">02</span>
-              <span className="chapter-title">Closechat.co</span>
-              <span className="chapter-tag">Agent de setting WhatsApp</span>
+              <span className="chapter-title">
+                Closechat.co
+                <span className="chapter-sub" data-state="paused">
+                  SaaS · En pause
+                </span>
+              </span>
+              <span className="chapter-tag">
+                Agent de qualification commerciale WhatsApp
+              </span>
               <span className="chapter-arrow" aria-hidden="true">
                 ↗
               </span>
             </a>
             <a href="#produit-prospable" className="chapter-row">
               <span className="chapter-num">03</span>
-              <span className="chapter-title">Prospable.com</span>
+              <span className="chapter-title">
+                Prospable.com
+                <span className="chapter-sub" data-state="live">
+                  SaaS · Fondateurs et petites équipes B2B
+                </span>
+              </span>
               <span className="chapter-tag">
                 Cold email IA sur signaux d'achat
               </span>
@@ -208,13 +189,14 @@ export default function Home() {
               <span>Mes produits</span>
             </div>
             <h2 className="cluster-h2">
-              Trois systèmes IA en prod
+              Trois produits IA en prod
               <span className="accent">.</span>
             </h2>
             <p className="cluster-lede">
-              Chacun est parti d'un problème que j'avais sous les yeux, et
-              chacun tourne aujourd'hui en production — modèle, back, front,
-              paiement, monitoring. Construits seul, de bout en bout.
+              Chacun est parti d'un problème que j'avais sous les yeux —
+              modèle, back, front, paiement, monitoring. Construits seul, de
+              bout en bout. Les chiffres ci-dessous sont ceux que je mesure,
+              pas des estimations.
             </p>
           </div>
 
@@ -237,7 +219,9 @@ export default function Home() {
                 <div className="product-stats">
                   <div>
                     <div className="product-stat-value">Flux 1</div>
-                    <div className="product-stat-label">Fine-tuné en LoRA</div>
+                    <div className="product-stat-label">
+                      Fine-tuné en LoRA, un modèle par client
+                    </div>
                   </div>
                   <div>
                     <div className="product-stat-value">2025</div>
@@ -269,25 +253,22 @@ export default function Home() {
               <div className="product-meta">
                 <span className="product-eyebrow">
                   <span className="count">02</span>
-                  <span className="tag">Agent de setting WhatsApp</span>
+                  <span className="tag">
+                    Agent de qualification commerciale WhatsApp
+                  </span>
                 </span>
                 <h3 className="product-name">Closechat.co</h3>
                 <p className="product-tagline">
-                  Un agent branché sur l'API WhatsApp Cloud qui qualifie les
-                  leads entrants, encaisse les objections et pose le RDV
-                  directement dans le calendrier du commercial.
+                  Un agent LangGraph/LangChain branché sur l'API WhatsApp Cloud qui qualifie des
+                  leads dormants, encaisse les objections et pose le RDV
+                  directement dans le calendrier du commercial. Il ne propose un créneau que
+                  quand l'intérêt est réellement établi.
                 </p>
                 <div className="product-stats">
                   <div>
-                    <div className="product-stat-value">24/7</div>
+                    <div className="product-stat-value">BANT</div>
                     <div className="product-stat-label">
-                      Qualification des leads
-                    </div>
-                  </div>
-                  <div>
-                    <div className="product-stat-value">WhatsApp API</div>
-                    <div className="product-stat-label">
-                      Intégrations API, agendas, CRM
+                      Scoring et gates avant toute prise de RDV
                     </div>
                   </div>
                 </div>
@@ -323,24 +304,25 @@ export default function Home() {
               <div className="product-meta">
                 <span className="product-eyebrow">
                   <span className="count">03</span>
-                  <span className="tag">Cold email IA sur signaux d'achat</span>
+                  <span className="tag">Cold email / LinkedIn IA</span>
                 </span>
                 <h3 className="product-name">Prospable.com</h3>
                 <p className="product-tagline">
                   Signaux d'intention détectés sur LinkedIn, prospects enrichis,
-                  cold emails écrits selon le signal. Pipeline asynchrone Celery
-                  + Redis, chauffe des boîtes en continu.
+                  cold emails et MP LinkedIn écrits selon le signal. Chauffe des boîtes en continu. Achat de boîtes Google à 4,5€, domaines. Tout est là.
                 </p>
                 <div className="product-stats">
                   <div>
-                    <div className="product-stat-value">Signaux d'achats</div>
+                    <div className="product-stat-value">300 / jour</div>
                     <div className="product-stat-label">
-                      De leads sur Linkedin
+                      Emails ciblés envoyés en autopilote
                     </div>
                   </div>
                   <div>
-                    <div className="product-stat-value">Infra email</div>
-                    <div className="product-stat-label">Hyper complète</div>
+                    <div className="product-stat-value">Signaux d&apos;achat</div>
+                    <div className="product-stat-label">
+                      Offres d&apos;emploi, nouveaux recrutements et autres déclencheurs
+                    </div>
                   </div>
                 </div>
                 <a
@@ -380,24 +362,61 @@ export default function Home() {
               </span>
             </h3>
             <p>
-              Avant de passer à l&apos;IA, j&apos;ai été développeur pendant
+              Avant de passer à l&apos;IA, j&apos;ai été développeur front/fullstack pendant
               cinq ans.
             </p>
             <div className="bleed-cv" id="scale-ups">
-              <dl className="profile-tick">
-                <dt>iziwork</dt>
+              <dl className="profile-tick cv-logos cv-table-lead">
+                <dt>
+                  <CvLogo src="/iziwork.jpg" alt="iziwork" />
+                  iziwork
+                </dt>
                 <dd>2020 — 2021</dd>
-                <dt>Reezocar</dt>
+                <dt>
+                  <CvLogo src="/reezocar.png" alt="Reezocar" />
+                  Reezocar
+                </dt>
                 <dd>2021</dd>
-                <dt>Sewan Group</dt>
+                <dt>
+                  <CvLogo src="/sewan.png" alt="Sewan Groupe" />
+                  Sewan Groupe
+                </dt>
                 <dd>2021</dd>
-                <dt>Corum l'Épargne</dt>
+                <dt>
+                  <CvLogo src="/corum.svg" alt="Corum l'Épargne" />
+                  Corum l&apos;Épargne
+                </dt>
                 <dd>2022</dd>
-                <dt>Smartch (Lead)</dt>
+                <dt>
+                  <CvLogo src="/smartch.jpeg" alt="Smartch" />
+                  Smartch (Lead front-end)
+                </dt>
                 <dd>2022 — 2023</dd>
                 <dt className="cv-total">Total</dt>
                 <dd className="profile-accent-word">5 ans</dd>
               </dl>
+
+              {/* Second tableau : la formation n'est pas une mission en
+                  entreprise, elle a donc sa propre timeline plutot qu'une
+                  ligne au milieu des scale-ups. */}
+              <div className="bleed-cv-aside-table">
+                <dl className="profile-tick cv-logos">
+                  <dt>
+                    <a
+                      href="https://formation-cleanarchitecture.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Formateur Clean Architecture
+                      <span className="cv-ext" aria-hidden="true">
+                        ↗
+                      </span>
+                    </a>
+                    <span className="cv-note">40 développeurs formés</span>
+                  </dt>
+                  <dd>2023 — 2025</dd>
+                </dl>
+              </div>
             </div>
           </div>
         </div>
@@ -423,6 +442,12 @@ export default function Home() {
               Partie IV / Les certifications
             </div>
             <h3 className="profile-funfact-title">Deux certifications IA</h3>
+            <p className="profile-funfact-body">
+              J'ai eu envie d'aller plus loin que l'ingénierie logicielle. Je
+              voulais comprendre les architectures d'agents, les modèles depuis
+              la backprop jusqu'au RAG agentique, parce qu'on ne construit pas
+              en confiance ce qu'on ne comprend pas.
+            </p>
             <div className="cert-list">
               <article className="cert-item">
                 <div className="cert-item-head">
@@ -469,16 +494,10 @@ export default function Home() {
                 </h4>
                 <p className="cert-item-body">
                   Agents IA, RAG, MM-RAG, RAG agentique, et fine-tuning de
-                  modèles en DPO, PPO, LoRA, QLoRA, instruction-tuning et PEFT.
+                  modèles en DPO, PPO, LoRA, QLoRA, instruction-tuning et PEFT avec Hugging Face.
                 </p>
               </article>
             </div>
-            <p className="profile-funfact-body">
-              J'ai eu envie d'aller plus loin que le dev "classique". Je voulais
-              comprendre les architectures d'agents, les modèles depuis la
-              backprop jusqu'au RAG agentique, parce qu'on ne construit pas en
-              confiance ce qu'on n'a pas démonté.
-            </p>
             <div className="cert-logos">
               <span className="cert-logos-label">Certifié par</span>
               <div className="cert-logos-row">
@@ -500,106 +519,109 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─────────────────  V. SERVICES  ───────────────── */}
+      {/* ─────────────────  VI. POCS / CASE STUDIES  ───────────────── */}
       <section
-        className="profile-movement profile-tone-paper profile-no-dropcap"
-        id="services"
+        className="profile-movement profile-tone-soft profile-no-dropcap"
+        id="pocs"
       >
         <SectionWatermark>05</SectionWatermark>
         <div className="profile-inner-wide">
           <div className="profile-meta">
             <span>Partie V</span>
             <span>/</span>
-            <span>Services</span>
+            <span>Études de cas</span>
           </div>
           <h2 className="profile-h2">
-            Services. <span className="profile-em">Du POC à la prod</span>
+            Études de cas,{" "}
+            <span className="profile-em">preuve de pratique</span>
           </h2>
-          <div className="svc-list">
-            {services.map((s, i) => (
-              <article className="svc-card" key={s.title}>
-                <div className="svc-head">
-                  <span className="svc-num">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <h3 className="svc-title">{s.title}</h3>
-                  <div className="svc-chips">
-                    {s.sectors.map((sector) => (
-                      <span className="svc-chip" key={sector}>
-                        {sector}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                <div className="svc-grid">
-                  <div>
-                    <p className="svc-label">Problème</p>
-                    <p className="svc-text">{s.problem}</p>
-                  </div>
-                  <div>
-                    <p className="svc-label">Solution</p>
-                    <p className="svc-text">{s.solution}</p>
-                  </div>
-                  <div className="svc-impact">
-                    <p className="svc-label">Impact</p>
-                    <p className="svc-text">{s.impact}</p>
-                  </div>
-                </div>
-                <div className="svc-tags">
-                  {s.tags.map((tag) => (
-                    <span className="svc-chip" key={tag}>
-                      {tag}
-                    </span>
-                  ))}
-                  {s.example && (
-                    <a
-                      href={s.example.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="svc-example"
-                    >
-                      {s.example.label} <span aria-hidden="true">↗</span>
-                    </a>
-                  )}
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* ─────────────────  VI. POCS / CASE STUDIES  ───────────────── */}
-      <section
-        className="profile-movement profile-tone-soft profile-no-dropcap"
-        id="pocs"
-      >
-        <SectionWatermark>06</SectionWatermark>
-        <div className="profile-inner-wide">
-          <div className="poc-layout">
-            <div className="poc-layout-main">
-              <div className="profile-meta">
-                <span>Partie VI</span>
-                <span>/</span>
-                <span>Études de cas</span>
-              </div>
-              <h2 className="profile-h2">
-                Quatre POCs. <span className="profile-em">De la R&D</span>
-              </h2>
-              <div className="poc-list">
+          {/* Etude de cas : pas un produit commercialise, donc traite a part —
+              badge « recherche appliquee », resultats benchmarkes en tete et
+              demo publique plutot qu'un lien « visiter le site ». */}
+          <section
+            className="product-section product-section-case"
+            id="etude-agentic-rag"
+          >
+            <span className="product-watermark" aria-hidden="true">
+              01
+            </span>
+            <div className="product-grid product-grid-reversed">
+              <div className="product-meta">
+                <span className="product-eyebrow">
+                  <span className="count">01</span>
+                  <span className="tag">RAG agentique sur documents</span>
+                </span>
+                <span className="case-badge">
+                  Étude de cas
+                </span>
+                <h3 className="product-name">Agentic-RAG</h3>
+                <p className="product-tagline">
+                  Un agent qui répond sur des PDF longs — rapports financiers,
+                  documentation technique. Plutôt que de lui servir des extraits
+                  découpés à l'avance, je lui ai donné des outils de navigation
+                  qu'il utilise lui-même pour se déplacer dans le document :
+                  aller à une section, ouvrir un tableau, revenir en arrière.
+                  C'est ce choix qui fait les trois chiffres ci-dessous.
+                </p>
+                <p className="case-bench">
+                  Benchmarké sur <strong>FinanceBench</strong>, un jeu de donnés relevé
+                </p>
+                <div className="product-stats">
+                  <div>
+                    <div className="product-stat-value">81 %</div>
+                    <div className="product-stat-label">
+                      De réponses correctes
+                    </div>
+                  </div>
+                  <div>
+                    <div className="product-stat-value">&minus;40 %</div>
+                    <div className="product-stat-label">
+                      De tokens consommés par question
+                    </div>
+                  </div>
+                  <div>
+                    <div className="product-stat-value">÷ 2</div>
+                    <div className="product-stat-label">
+                      De latence
+                    </div>
+                  </div>
+                </div>
+                <div className="product-stack">
+                  <span className="product-stack-label">Stack</span>
+                  <span className="product-stack-items">
+                    LangGraph · LangSmith · tool calling · Pydantic · Mistral
+                    OCR/Embed/Small/Large · reranker Cohere · ChromaDB HNSW
+                    cosine + BM25 hybride · Django · React/TypeScript
+                  </span>
+                </div>
                 <a
                   href="https://docchat-agentic-rag.up.railway.app"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="poc-list-item"
+                  className="product-cta"
                 >
-                  <span className="poc-list-num">N° 01 · RAG</span>
-                  <h3 className="poc-list-title">
-                    RAG agentique sur documents relevés (techniques et autres)
-                  </h3>
-                  <span className="poc-list-arrow" aria-hidden="true">
-                    →
-                  </span>
+                  Essayer la démo publique <span aria-hidden="true">→</span>
                 </a>
+              </div>
+              <div className="product-visual pv-2">
+                <div className="pv-num">Étude de cas 01 · 2026</div>
+                <div className="pv-name">
+                  Agentic
+                  <br />
+                  RAG<span style={{ color: "var(--accent-light)" }}>.</span>
+                </div>
+                <div className="pv-foot">
+                  <span>FinanceBench</span>
+                  <span>Démo live</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <div className="poc-layout">
+            <div className="poc-layout-main">
+              <div className="poc-list">
                 <a
                   href="https://mm-rag-styleanalyzer.up.railway.app"
                   target="_blank"
@@ -662,10 +684,10 @@ export default function Home() {
         className="profile-movement profile-tone-paper profile-no-dropcap"
         id="youtube"
       >
-        <SectionWatermark>07</SectionWatermark>
+        <SectionWatermark>06</SectionWatermark>
         <div className="profile-inner-wide">
           <div className="profile-meta">
-            <span>Partie VII</span>
+            <span>Partie VI</span>
             <span>/</span>
             <span>Sur YouTube</span>
           </div>
@@ -698,10 +720,10 @@ export default function Home() {
         className="profile-movement profile-tone-deep profile-cta-section profile-no-dropcap"
         id="contact"
       >
-        <SectionWatermark>08</SectionWatermark>
+        <SectionWatermark>07</SectionWatermark>
         <div className="profile-inner-wide">
           <div className="profile-meta">
-            <span>Partie VIII</span>
+            <span>Partie VII</span>
             <span>/</span>
             <span>Me contacter</span>
           </div>
@@ -716,8 +738,12 @@ export default function Home() {
             </div>
             <div className="li-bill-right">
               <span className="li-bill-eyebrow">
-                Ingénieur IA freelance · Avignon · Mobile
+                Ingénieur IA · Freelance ou CDI · Disponible
               </span>
+              <p className="li-bill-avail">
+                Basé à Avignon, sur site 2-3 jours par semaine à Aix-en-Provence,
+                Marseille, Montpellier, Lyon et Paris. Full remote possible.
+              </p>
               <h3 className="li-bill-h">
                 Agents, RAG, fine-tuning. <em>Dites-moi ce qui bloque.</em>
               </h3>

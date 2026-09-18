@@ -30,7 +30,7 @@ const instrumentSerif = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "Julien Lucas — Des systèmes IA en production",
+  title: "Julien Lucas — Applied AI Engineer, des agents et RAG en prod de bout en bout",
   description:
     "Julien Lucas. Cinq ans à coder pour des scale-ups. Une bascule fin 2024 vers l'IA. Aujourd'hui ingénieur en IA appliquée.",
 };
