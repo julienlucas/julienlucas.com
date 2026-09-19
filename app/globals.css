@@ -1,19 +1,19 @@
 @import "tailwindcss";
 
 :root {
-  /* Accent (forest green) */
-  --accent: #266F59;
-  --accent-hover: #1E5A48;
-  --accent-light: #E8F5F0;
+  /* Accent (bleu nuit) */
+  --accent: #193073;
+  --accent-hover: #14265C;
+  --accent-light: #E8EDF7;
   /* Composantes RVB : sert a fabriquer halos et ombres teintes en rgba() */
-  --accent-rgb: 38, 111, 89;
+  --accent-rgb: 25, 48, 115;
   --ink-rgb: 10, 10, 10;
 
   /* Elevation : ombres encre, tres basses en opacite (rendu papier) */
   --lift-1: 0 1px 2px rgba(var(--ink-rgb), .04), 0 8px 24px -14px rgba(var(--ink-rgb), .18);
   --lift-2: 0 1px 2px rgba(var(--ink-rgb), .05), 0 18px 44px -20px rgba(var(--ink-rgb), .28);
 
-  /* Halo accent : le meme vert, diffuse. Base commune a tous les boutons. */
+  /* Halo accent : le meme bleu, diffuse. Base commune a tous les boutons. */
   --glow-rest:  0 12px 30px -14px rgba(var(--accent-rgb), .70);
   --glow-hover: 0 18px 44px -14px rgba(var(--accent-rgb), .95), 0 0 0 5px rgba(var(--accent-rgb), .11);
 
@@ -40,6 +40,8 @@
   --mono: var(--font-space-mono), "Space Mono", ui-monospace, monospace;
   --sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-editorial: var(--font-sora), "Sora", system-ui, sans-serif;
+  /* Titres : Geist (Google). Le reste du site garde Sora. */
+  --font-display: var(--font-geist), "Geist", system-ui, sans-serif;
   --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
@@ -62,7 +64,7 @@ body {
 p, li, dd { font-family: var(--font-body); }
 label, input, textarea, button { font-family: var(--sans); }
 
-/* Explicit Sora on every headline + subheadline */
+/* Titres : Geist via --font-display ; sous-titres et labels restent sur Sora. */
 h1, h2, h3, h4, h5, h6,
 .profile-h1, .profile-h2, .profile-h3,
 .profile-tagline,
@@ -80,7 +82,7 @@ h1, h2, h3, h4, h5, h6,
 .yt-title,
 .nav-logo,
 .site-footer p {
-  font-family: var(--font-sora), "Sora", system-ui, sans-serif;
+  font-family: var(--font-display);
 }
 
 /* ─── Wave underline on links (Jason signature) ─── */
@@ -119,10 +121,13 @@ nav.site-nav {
   z-index: 50;
   backdrop-filter: blur(8px);
 }
+/* Meme gabarit que le footer : contenu de 1200px max, gouttiere
+   clamp(24px, 5vw, 64px). Le max-width inclut les gouttieres (border-box),
+   donc la boite de contenu tombe exactement sur celle de .site-footer-inner. */
 .nav-inner {
-  max-width: 880px;
+  max-width: calc(1200px + 2 * clamp(24px, 5vw, 64px));
   margin: 0 auto;
-  padding: 14px 24px;
+  padding: 14px clamp(24px, 5vw, 64px);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -264,7 +269,7 @@ nav.site-nav {
   .nav-mobile { display: flex; }
 }
 @media (max-width: 480px) {
-  .nav-inner { padding: 12px 16px; }
+  .nav-inner { padding-block: 12px; } /* gouttiere alignee sur le footer */
   .nav-mobile { padding-inline: 16px; }
 }
 
@@ -335,7 +340,7 @@ nav.site-nav {
   font-weight: 700;
 }
 .profile-h1 {
-  font-family: var(--font-sora), "Sora", system-ui, sans-serif;
+  font-family: var(--font-display);
   font-weight: 800;
   font-size: clamp(52px, 8vw, 140px);
   line-height: .9;
@@ -347,9 +352,9 @@ nav.site-nav {
   flex-direction: column;
 }
 .profile-tagline {
-  font-family: var(--font-sora), "Sora", system-ui, sans-serif;
+  font-family: var(--font-display);
   font-weight: 300;
-  font-size: clamp(18px, 2vw, 22px);
+  font-size: clamp(18px, 2vw, 26px);
   line-height: 1.3;
   letter-spacing: -.015em;
   max-width: 560px;
@@ -384,7 +389,7 @@ nav.site-nav {
 .profile-portrait {
   position: relative;
   aspect-ratio: 4 / 5;
-  max-height: 66vh;
+  max-height: 80vh;
   min-height: 420px;
   background: var(--p-g-2);
   overflow: hidden;
@@ -440,7 +445,7 @@ nav.site-nav {
 .profile-meta span:first-child { color: var(--accent); font-weight: 700; }
 
 .profile-h2 {
-  font-family: var(--font-sora), "Sora", system-ui, sans-serif;
+  font-family: var(--font-display);
   font-weight: 800;
   font-size: clamp(34px, 5vw, 76px);
   line-height: 1.05;
@@ -450,6 +455,10 @@ nav.site-nav {
   text-wrap: pretty;
 }
 .profile-h2 .profile-em { color: var(--p-g-4); font-weight: 400; }
+/* Titre de la partie V : cale sur la taille de .intro-h2 (« Ce que j'ai
+   construis. ») plutot que sur le gabarit plein des autres parties, et
+   resserre pour tenir sur les deux lignes du <br /> sans re-wrapper. */
+.profile-h2-sm { font-size: clamp(34px, 4.8vw, 64px); max-width: 20ch; }
 
 .profile-movement p {
   font-family: var(--font-body);
@@ -576,7 +585,7 @@ nav.site-nav {
 .profile-bleed-dark .profile-eb { color: var(--accent-light); }
 
 .profile-h3 {
-  font-family: var(--font-sora), "Sora", system-ui, sans-serif;
+  font-family: var(--font-display);
   font-weight: 800;
   font-size: clamp(28px, 3.8vw, 54px);
   line-height: 1.04;
@@ -885,7 +894,7 @@ nav.site-nav {
 }
 .profile-book-tag span:first-child { color: var(--accent); font-weight: 700; }
 .profile-book-title {
-  font-family: var(--font-sora), "Sora", system-ui, sans-serif;
+  font-family: var(--font-display);
   font-weight: 800;
   font-size: clamp(28px, 3vw, 42px);
   line-height: 1.05;
@@ -977,7 +986,7 @@ nav.site-nav {
   font-weight: 700;
 }
 .li-bill-h {
-  font-family: var(--font-sora), "Sora", system-ui, sans-serif;
+  font-family: var(--font-display);
   font-weight: 800;
   font-size: clamp(28px, 3.4vw, 44px);
   line-height: 1.04;
@@ -1095,14 +1104,15 @@ nav.site-nav {
   margin-bottom: 54px;
 }
 .intro-h2 {
-  font-family: var(--font-editorial);
+  font-family: var(--font-display);
   font-weight: 800;
   font-size: clamp(34px, 4.8vw, 68px);
   line-height: .94;
   letter-spacing: -.042em;
   color: var(--p-ink);
 }
-.intro-h2 .accent { color: var(--accent); }
+/* Le point final des titres est toujours en accent, quel que soit le titre. */
+.accent { color: var(--accent); }
 .intro-head .intro-lede {
   font-family: var(--font-body);
   font-size: 15.5px;
@@ -1147,7 +1157,7 @@ nav.site-nav {
 }
 .chapter-row:hover .chapter-num { color: var(--accent); }
 .chapter-title {
-  font-family: var(--font-editorial);
+  font-family: var(--font-display);
   font-weight: 700;
   font-size: clamp(20px, 2.4vw, 37px);
   line-height: 1.15;
@@ -1217,7 +1227,7 @@ nav.site-nav {
   margin-bottom: clamp(48px, 6vw, 88px);
 }
 .cluster-h2 {
-  font-family: var(--font-editorial);
+  font-family: var(--font-display);
   font-weight: 800;
   font-size: clamp(34px, 4.6vw, 60px);
   line-height: 1.02;
@@ -1225,7 +1235,6 @@ nav.site-nav {
   color: var(--p-ink);
   margin-top: 8px;
 }
-.cluster-h2 .accent { color: var(--accent); }
 .cluster-header .cluster-lede {
   font-family: var(--font-body);
   font-size: 15.5px;
@@ -1295,9 +1304,9 @@ nav.site-nav {
   border-left: 1px solid var(--p-g-3);
 }
 .product-name {
-  font-family: var(--font-editorial);
+  font-family: var(--font-display);
   font-weight: 800;
-  font-size: clamp(32px, 4.2vw, 54px);
+  font-size: clamp(32px, 4vw, 54px);
   line-height: 1;
   letter-spacing: -.04em;
   color: var(--p-ink);
@@ -1310,6 +1319,36 @@ nav.site-nav {
   margin-top: 18px;
   max-width: 46ch;
 }
+/* « Pour qui » : paire label / valeur en <dl>, sur le modele de .profile-tick
+   deja utilise ailleurs. Rien de neuf dans le vocabulaire visuel — le filet a
+   gauche reprend celui de .product-eyebrow .tag, le micro-label mono celui de
+   .product-stat-label. Seule la couleur du filet passe a l'accent, pour poser
+   la ligne sans ajouter ni fond, ni encadre, ni pastille. */
+.product-audience {
+  margin-top: 26px;
+  padding-left: 16px;
+  border-left: 2px solid var(--accent);
+}
+.product-audience dt {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--p-g-4);
+}
+/* Specificite (0,1,1) : passe devant la regle globale `p, li, dd`. */
+.product-audience dd {
+  font-family: var(--font-editorial);
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 1.45;
+  letter-spacing: -.015em;
+  color: var(--p-ink);
+  margin-top: 7px;
+  max-width: 34ch;
+}
+
 .product-stats {
   display: flex;
   flex-wrap: wrap;
@@ -1319,7 +1358,7 @@ nav.site-nav {
 .product-stat-value {
   font-family: var(--font-editorial);
   font-weight: 800;
-  font-size: clamp(25px, 3vw, 35px);
+  font-size: clamp(25px, 3vw, 36px);
   line-height: 1;
   letter-spacing: -.03em;
   color: var(--accent);
@@ -1332,6 +1371,70 @@ nav.site-nav {
   color: var(--p-g-4);
   margin-top: 10px;
 }
+/* Bouton carre des blocs produit. Reprend la grammaire de .cover-cta (fond
+   accent, capitales tracees, fleche qui glisse) mais en plus petit et sans le
+   halo, qui est reserve au hero. Angle droit assume, comme .cover-cta et
+   .ct-item depuis leur passage en carre. */
+.product-btns {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 36px;
+}
+.product-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 36px;
+  padding: 15px 26px;
+  border: 1px solid var(--accent);
+  border-radius: 0;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--font-editorial);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: background-color .2s ease, border-color .2s ease, color .2s ease, transform .25s ease;
+}
+/* Dans une rangee, le margin-top passe sur le conteneur. */
+.product-btns .product-btn { margin-top: 0; }
+.product-btn::before { display: none; }
+/* La regle globale `a:hover { color: var(--accent-hover) }` (l.98) repasserait
+   le libelle en bleu sur le fond bleu : on refixe le blanc sur les deux etats. */
+.product-btn:hover,
+.product-btn:visited { color: #fff; }
+.product-btn:hover { background: var(--accent-hover); border-color: var(--accent-hover); transform: translateY(-2px); }
+.product-btn span {
+  display: inline-block;
+  transition: transform .3s cubic-bezier(.175,.885,.32,1.275);
+}
+.product-btn:hover span { transform: translateX(4px); }
+/* Variante secondaire : meme gabarit, contour seul, sans fond. Les regles de
+   survol arrivent apres celles de .product-btn, a specificite egale — ce sont
+   donc elles qui l'emportent, y compris sur le `color: #fff` du bouton plein. */
+.product-btn-ghost {
+  background: transparent;
+  border-color: var(--p-g-3);
+  color: var(--p-ink);
+}
+.product-btn-ghost:hover,
+.product-btn-ghost:visited { color: var(--accent); }
+.product-btn-ghost:hover { background: transparent; border-color: var(--accent); }
+/* Etiquette de domaine : meme apparence, mais ce n'est pas un lien. Ni curseur
+   main, ni reaction au survol — sinon elle promet un clic qui n'existe pas. */
+.product-btn-label,
+.product-btn-label:hover {
+  background: transparent;
+  border-color: var(--p-g-3);
+  color: var(--p-ink);
+  transform: none;
+  cursor: default;
+}
+
 .product-cta {
   display: inline-flex;
   align-items: center;
@@ -1364,6 +1467,30 @@ nav.site-nav {
   padding: clamp(24px, 3vw, 38px);
   overflow: hidden;
 }
+/* Essai : capture PNG a la place du mockup reconstruit (.pd). Reprend le meme
+   rayon et la meme ombre en trois couches, pour que l'echange soit iso-rendu. */
+/* Le cadre fixe la boite : sa largeur et sa hauteur restent celles de l'image
+   a l'echelle 1, et overflow:hidden rogne le zoom applique a l'interieur. Il
+   porte donc le rayon et l'ombre — poses sur l'image, ils seraient rognes. */
+.product-frame {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, .05),
+    0 6px 14px -6px rgba(15, 23, 42, .07),
+    0 24px 44px -20px rgba(15, 23, 42, .13);
+}
+/* Zoom interne. transform ne change pas la mise en page : le cadre garde donc
+   ses dimensions. transform-origin en haut pour que l'image grandisse vers le
+   bas et que le haut de la capture reste visible. */
+.product-shot {
+  display: block;
+  width: 100%;
+  height: auto;
+  transform: scale(1.18);
+  transform-origin: center top;
+}
+
 /* Variante « capture produit » : le bloc de couleur cede la place a une image */
 .product-live {
   aspect-ratio: auto;
@@ -1378,6 +1505,25 @@ nav.site-nav {
 .pv-1 { background: var(--accent);  color: #fff; }
 .pv-2 { background: var(--p-g-7);   color: var(--p-paper); }
 .pv-3 { background: #9B2C4A;        color: #fff; }
+
+/* Etude de cas 01 (partie V) : photo de fond en noir et blanc. L'image vit sur
+   un ::before pour que le grayscale ne touche que la photo, pas le texte pose
+   dessus. Le voile sombre garde .pv-num, .pv-name et .pv-foot lisibles ; la
+   couleur de .pv-2 reste dessous et sert de repli si l'image ne charge pas. */
+.pv-photo { position: relative; }
+/* ::before porte la photo seule : le zoom et le grayscale ne s'appliquent donc
+   qu'a elle. Le debordement est rogne par overflow:hidden de .product-visual. */
+
+/* ::after porte le voile sombre, pose par-dessus la photo et non zoome, pour
+   que le degrade garde ses extremites franches sur les bords du bloc. */
+.pv-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(10, 10, 10, .93) 0%, rgba(10, 10, 10, .82) 48%, rgba(10, 10, 10, .96) 100%);
+  pointer-events: none;
+}
+.pv-photo > * { position: relative; z-index: 1; }
 .pv-num {
   font-family: var(--font-editorial);
   font-size: 11px;
@@ -1421,7 +1567,7 @@ nav.site-nav {
   margin-top: 0;
 }
 .bleed-cv-title {
-  font-family: var(--font-editorial);
+  font-family: var(--font-display);
   font-weight: 800;
   font-size: clamp(22px, 2.4vw, 32px);
   line-height: 1.1;
@@ -1434,8 +1580,9 @@ nav.site-nav {
 .profile-bleed-dark .profile-tick dt { color: #bfbfbf; }
 .profile-bleed-dark .profile-accent-word { color: var(--accent-light); }
 
-/* Company logos in front of each name (part III). Small, black and white,
-   on a light tile so transparent and dark-background logos read the same. */
+/* Company logos in front of each name (part III). Small, black and white.
+   Fond transparent par defaut ; seuls les logos sur fond sombre ou opaque
+   (Reezocar, Sewan, Corum) recoivent une tuile blanche. */
 .cv-logos dt {
   display: flex;
   align-items: flex-start; /* stays on the first line when the name wraps */
@@ -1449,9 +1596,9 @@ nav.site-nav {
   justify-content: center;
   width: 20px;
   height: 20px;
-  background: #e8e8e8;
   overflow: hidden;
 }
+.cv-logo-tile { background: #fff; }
 .cv-logo img {
   display: block;
   width: 100%;
@@ -1598,8 +1745,8 @@ nav.site-nav {
   transition: filter .3s ease, opacity .3s ease;
 }
 .cert-logo:hover { filter: grayscale(0); opacity: 1; }
-.cert-logo-ibm { height: 36px; }
-.cert-logo-dl { height: auto; width: 190px; }
+.cert-logo-ibm { height: 32px; }
+.cert-logo-dl { height: auto; width: 180px; }
 @media (max-width: 600px) {
   .cert-logo-ibm { height: 30px; }
   .cert-logo-dl { height: auto; width: 150px; }
@@ -1954,7 +2101,7 @@ nav.site-nav {
   color: var(--sp-mut);
 }
 .sp-lab-apres { flex-direction: row; align-items: baseline; gap: 9px; margin: 15px 0 9px; }
-.sp-gen { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.sp-gen { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
 .sp-gen img {
   display: block;
   width: 100%;
@@ -1979,7 +2126,7 @@ nav.site-nav {
   gap: 0 14px;
   padding: 15px 18px;
   border: 1px solid rgba(255, 255, 255, .16);
-  border-radius: 12px;
+  border-radius: 0;
   text-decoration: none;
   color: inherit;
   transition: border-color .2s ease, background-color .2s ease, transform .25s ease;
@@ -2059,7 +2206,7 @@ nav.site-nav {
   align-self: flex-start;
   margin-top: 28px;
   padding: 16px 28px;
-  border-radius: 999px;
+  border-radius: 0;
   background: var(--accent);
   color: #fff;
   font-family: var(--font-editorial);
@@ -2080,7 +2227,7 @@ nav.site-nav {
   line-height: 1;
   transition: transform .3s cubic-bezier(.175,.885,.32,1.275);
 }
-.cover-cta:hover .cover-cta-arrow { transform: translateY(3px); }
+.cover-cta:hover .cover-cta-arrow { transform: translateX(4px); }
 
 @media (max-width: 600px) {
   .cover-cta { padding: 14px 22px; font-size: 11px; letter-spacing: .14em; }
@@ -2091,12 +2238,22 @@ nav.site-nav {
   margin: 32px 0 0;
   border-top: 1px solid var(--p-g-2);
 }
+/* La rangee contient deux liens : la demo (toute la ligne) et le depot. Un
+   <a> ne peut pas en contenir un autre, d'ou ce conteneur. Il reprend le filet
+   du bas, qui doit courir sous les deux et non sous la seule demo. */
+.poc-list-row {
+  display: flex;
+  align-items: center;
+  position: relative;
+  border-bottom: 1px solid var(--p-g-2);
+}
 .poc-list-item {
+  flex: 1;
+  min-width: 0;
   display: flex;
   align-items: center;
   gap: 24px;
   padding: 22px 4px;
-  border-bottom: 1px solid var(--p-g-2);
   text-decoration: none;
   color: inherit;
   position: relative;
@@ -2115,16 +2272,60 @@ nav.site-nav {
   flex-shrink: 0;
 }
 .poc-list-title {
-  font-family: var(--font-sora), "Sora", system-ui, sans-serif;
+  font-family: var(--font-display);
   font-weight: 600;
   font-size: clamp(18px, 2vw, 22px);
   line-height: 1.25;
   letter-spacing: -.018em;
   color: var(--p-ink);
   margin: 0;
+}
+/* Titre et pile technique empiles : la ligne n'avait plus la place de les
+   tenir cote a cote une fois le lien github ajoute. */
+.poc-list-body {
   flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 .poc-list-item:hover .poc-list-title { color: var(--accent); }
+/* Pile technique : troisieme colonne de la ligne, entre le titre et la fleche.
+   Le filet vertical a gauche reprend le motif de .product-eyebrow .tag — il
+   separe du titre sans introduire de boite, que le reste de la liste n'a pas.
+   Couleur muette au repos : le titre reste l'element lu en premier. */
+.poc-list-stack {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--p-g-4);
+  transition: color .2s ease;
+}
+.poc-list-item:hover .poc-list-stack { color: var(--accent); }
+
+/* Lien vers le depot : carre comme les boutons du site depuis leur passage en
+   angle droit, muet au repos pour ne pas concurrencer le titre. */
+.poc-list-git {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  margin-left: 18px;
+  padding: 10px 14px;
+  font-family: var(--mono);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--p-ink);
+  border: 1px solid var(--p-g-2);
+  transition: color .2s ease, border-color .2s ease;
+}
+.poc-list-git::before { display: none; }
+.poc-list-git:hover { color: var(--accent); border-color: var(--accent); }
+
 .poc-list-arrow {
   font-family: var(--font-sora), "Sora", system-ui, sans-serif;
   font-size: 18px;
@@ -2133,13 +2334,19 @@ nav.site-nav {
   transform: translateX(0);
   transition: transform .3s cubic-bezier(.175,.885,.32,1.275), color .2s ease;
 }
-.poc-list-item:hover .poc-list-arrow {
+/* La fleche est sortie du <a> de la demo pour se poser apres le bouton github :
+   c'est donc le survol de la rangee entiere qui l'anime. */
+.poc-list-row:hover .poc-list-arrow {
   color: var(--accent);
   transform: translateX(6px);
 }
+.poc-list-arrow { margin-left: 18px; }
 @media (max-width: 600px) {
   .poc-list-item { gap: 14px; padding: 18px 4px; }
   .poc-list-num { min-width: 72px; font-size: 10px; letter-spacing: .2em; }
+  /* Plus la place pour le libelle : on retombe sur l'icone seule. L'aria-label
+     porte deja le texte, rien n'est perdu pour un lecteur d'ecran. */
+  .poc-list-git { margin-left: 10px; padding: 9px 10px; font-size: 8.5px; letter-spacing: .1em; }
 }
 
 /* ─── POC cards (small encarts, 2x2 grid) ─── */
@@ -2194,7 +2401,7 @@ nav.site-nav {
   font-weight: 700;
 }
 .poc-card-title {
-  font-family: var(--font-sora), "Sora", system-ui, sans-serif;
+  font-family: var(--font-display);
   font-weight: 700;
   font-size: 19px;
   line-height: 1.2;
@@ -2258,7 +2465,7 @@ nav.site-nav {
 }
 .uc-hero-meta span:first-child { color: var(--accent); font-weight: 700; }
 .uc-hero-title {
-  font-family: var(--font-sora), "Sora", system-ui, sans-serif;
+  font-family: var(--font-display);
   font-weight: 800;
   font-size: clamp(36px, 5.5vw, 68px);
   line-height: 1.04;
@@ -2302,7 +2509,7 @@ nav.site-nav {
 }
 .uc-inner { max-width: 720px; margin: 0 auto; }
 .uc-h2 {
-  font-family: var(--font-sora), "Sora", system-ui, sans-serif;
+  font-family: var(--font-display);
   font-weight: 800;
   font-size: clamp(28px, 3.6vw, 44px);
   line-height: 1.08;
@@ -2310,7 +2517,7 @@ nav.site-nav {
   margin: 0 0 12px;
 }
 .uc-h3 {
-  font-family: var(--font-sora), "Sora", system-ui, sans-serif;
+  font-family: var(--font-display);
   font-weight: 600;
   font-size: clamp(20px, 2vw, 24px);
   line-height: 1.3;
@@ -2490,7 +2697,7 @@ footer.site-footer {
   margin: 0 auto;
 }
 .footer-giant {
-  font-family: var(--font-sora), "Sora", system-ui, sans-serif;
+  font-family: var(--font-display);
   font-weight: 800;
   font-size: clamp(64px, 12vw, 200px);
   line-height: .88;
@@ -2699,7 +2906,7 @@ footer.site-footer {
   border-radius: 50%;
   padding: 3px;
   background: linear-gradient(140deg, var(--accent), var(--accent-hover));
-  box-shadow: 0 8px 24px rgba(38, 111, 89, .22);
+  box-shadow: 0 8px 24px rgba(var(--accent-rgb), .22);
 }
 .lk-avatar img {
   width: 100%;
@@ -2746,7 +2953,7 @@ footer.site-footer {
   transform: translateY(-2px);
   color: var(--accent);
   border-color: var(--accent);
-  box-shadow: 0 6px 16px rgba(38, 111, 89, .16);
+  box-shadow: 0 6px 16px rgba(var(--accent-rgb), .16);
 }
 
 /* ── Shared eyebrow ── */
@@ -2787,7 +2994,7 @@ footer.site-footer {
 .lk-card:hover {
   transform: translateY(-2px);
   border-color: var(--accent);
-  box-shadow: 0 12px 28px rgba(38, 111, 89, .14);
+  box-shadow: 0 12px 28px rgba(var(--accent-rgb), .14);
 }
 .lk-card-icon {
   flex: 0 0 46px;
@@ -2810,7 +3017,7 @@ footer.site-footer {
   gap: 3px;
 }
 .lk-card-title {
-  font-family: var(--font-sora), "Sora", system-ui, sans-serif;
+  font-family: var(--font-display);
   font-size: 15.5px;
   font-weight: 700;
   letter-spacing: -.01em;
@@ -2843,7 +3050,7 @@ footer.site-footer {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(90% 120% at 100% 0%, rgba(38, 111, 89, .38) 0%, transparent 55%);
+  background: radial-gradient(90% 120% at 100% 0%, rgba(var(--accent-rgb), .38) 0%, transparent 55%);
   pointer-events: none;
 }
 .lk-feature:hover { transform: translateY(-2px); box-shadow: 0 18px 40px rgba(0, 0, 0, .3); }
@@ -2858,12 +3065,12 @@ footer.site-footer {
   border-radius: 16px;
   background: rgba(255, 255, 255, .08);
   border: 1px solid rgba(255, 255, 255, .12);
-  color: #4fd0a6;
+  color: #7996EC;
 }
 .lk-feature-body { position: relative; z-index: 1; flex: 1 1 auto; display: flex; flex-direction: column; gap: 5px; }
-.lk-feature .lk-eyebrow { color: #4fd0a6; }
+.lk-feature .lk-eyebrow { color: #7996EC; }
 .lk-feature-title {
-  font-family: var(--font-sora), "Sora", system-ui, sans-serif;
+  font-family: var(--font-display);
   font-size: 19px;
   font-weight: 800;
   letter-spacing: -.015em;
@@ -2871,7 +3078,7 @@ footer.site-footer {
 }
 .lk-feature-sub { font-size: 13px; line-height: 1.5; color: rgba(255, 255, 255, .62); }
 .lk-feature-arrow { position: relative; z-index: 1; flex: 0 0 auto; color: rgba(255, 255, 255, .5); transition: transform .18s ease, color .18s ease; }
-.lk-feature:hover .lk-feature-arrow { color: #4fd0a6; transform: translate(3px, -3px); }
+.lk-feature:hover .lk-feature-arrow { color: #7996EC; transform: translate(3px, -3px); }
 
 /* ── Bottom CTA banner ── */
 .lk-banner {
@@ -2885,11 +3092,11 @@ footer.site-footer {
   background: linear-gradient(150deg, var(--accent) 0%, var(--accent-hover) 100%);
   color: #fff;
   overflow: hidden;
-  box-shadow: 0 12px 30px rgba(38, 111, 89, .28);
+  box-shadow: 0 12px 30px rgba(var(--accent-rgb), .28);
   transition: transform .18s ease, box-shadow .18s ease;
 }
 .lk-banner::before { display: none; }
-.lk-banner:hover { transform: translateY(-2px); box-shadow: 0 18px 42px rgba(38, 111, 89, .36); }
+.lk-banner:hover { transform: translateY(-2px); box-shadow: 0 18px 42px rgba(var(--accent-rgb), .36); }
 .lk-banner-eyebrow {
   font-family: var(--mono);
   font-size: 10.5px;
@@ -2898,7 +3105,7 @@ footer.site-footer {
   color: rgba(255, 255, 255, .8);
 }
 .lk-banner-title {
-  font-family: var(--font-sora), "Sora", system-ui, sans-serif;
+  font-family: var(--font-display);
   font-size: 21px;
   font-weight: 800;
   letter-spacing: -.015em;
@@ -2993,7 +3200,9 @@ footer.site-footer {
    le meme filet 1px gris. Au survol il est repeint en accent, de
    gauche a droite, dans le sens de lecture. */
 .chapter-row::after,
-.poc-list-item::after {
+/* Deplace de .poc-list-item a la rangee : le trait doit courir sur toute la
+   largeur, lien github compris, et repondre au survol de l'un ou l'autre. */
+.poc-list-row::after {
   content: "";
   position: absolute;
   left: 0;
@@ -3007,7 +3216,7 @@ footer.site-footer {
   pointer-events: none;
 }
 .chapter-row:hover::after,
-.poc-list-item:hover::after { transform: scaleX(1); }
+.poc-list-row:hover::after { transform: scaleX(1); }
 .chapter-row { position: relative; }
 
 /* ─── 4. Indicatif produit : pastille d'etat ───
@@ -3106,7 +3315,7 @@ footer.site-footer {
   .poc-card:hover,
   .profile-cover-pill:hover { transform: none; }
   .chapter-row::after,
-  .poc-list-item::after { transition: none; }
+  .poc-list-row::after { transition: none; }
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -3204,11 +3413,10 @@ footer.site-footer {
   letter-spacing: .2em;
   text-transform: uppercase;
   color: var(--accent);
-  background: rgba(var(--accent-rgb), .06);
 }
 .product-section-case .case-bench {
   font-family: var(--font-body);
-  font-size: 14px;
+  font-size: 18px;
   line-height: 1.6;
   color: var(--p-ink-2);
   margin-top: 14px;

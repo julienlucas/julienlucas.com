@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Instrument_Serif, Sora, Space_Mono } from "next/font/google";
+import { Geist, Instrument_Serif, Sora, Space_Mono } from "next/font/google";
 import Navigation from "./components/ui/navigation";
 import SideNav from "./components/ui/side-nav";
 import SiteFooter from "./components/ui/site-footer";
@@ -11,6 +11,13 @@ const sora = Sora({
   variable: "--font-sora",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700", "800"],
+  display: "swap",
+});
+
+// Essai en cours : Geist sur les titres, Sora reste sur le reste du site.
+const geist = Geist({
+  variable: "--font-geist",
+  subsets: ["latin"],
   display: "swap",
 });
 
@@ -43,7 +50,7 @@ export default function RootLayout({
   return (
     <html
       lang="fr"
-      className={`${sora.variable} ${spaceMono.variable} ${instrumentSerif.variable}`}
+      className={`${sora.variable} ${geist.variable} ${spaceMono.variable} ${instrumentSerif.variable}`}
     >
       <body>
         <Script

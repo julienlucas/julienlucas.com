@@ -7,7 +7,7 @@ import { ArrowDown } from "lucide-react";
  */
 
 const sources = ["/shootingpro/src-01.jpg", "/shootingpro/src-02.jpg", "/shootingpro/src-03.jpg"];
-const rendus = ["/shootingpro/gen-01.jpg", "/shootingpro/gen-02.jpg", "/shootingpro/gen-03.jpg"];
+const rendus = ["/shootingpro/gen-01.jpg", "/shootingpro/gen-02.jpg", "/shootingpro/gen-03.jpg", "/shootingpro/gen-04.jpg"];
 
 export default function ShootingproShowcase() {
   return (

@@ -1,12 +1,11 @@
 import { CalendarDays, Linkedin, Mail } from "lucide-react";
-import ProspableDashboard from "./components/ui/prospable-dashboard";
 import ShootingproShowcase from "./components/ui/shootingpro-showcase";
 import SectionWatermark from "./components/ui/section-watermark";
 import YoutubeFeed from "./components/ui/youtube-feed";
 
-function CvLogo({ src, alt }: { src: string; alt: string }) {
+function CvLogo({ src, alt, tile }: { src: string; alt: string; tile?: boolean }) {
   return (
-    <span className="cv-logo" aria-hidden="true">
+    <span className={tile ? "cv-logo cv-logo-tile" : "cv-logo"} aria-hidden="true">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src={src} alt={alt} loading="lazy" />
     </span>
@@ -33,21 +32,23 @@ export default function Home() {
             <ul className="profile-cover-pills">
               <li className="profile-cover-pill">Ingénierie IA appliquée</li>
               <li className="profile-cover-pill">
-                Développeur 5 ans en startups et scaleups
+                Développeur front/fullstack 5 ans en startups et scaleups
               </li>
               <li className="profile-cover-pill">Produits IA</li>
             </ul>
             <p className="profile-tagline">
-              Cinq ans à coder pour des startups et scaleups. Aujourd'hui je construis des{" "}
+              Cinq ans à coder pour des startups et scaleups. Aujourd'hui je
+              construis des{" "}
               <strong>
-                systèmes IA de bout en bout en production (agents IA, RAG agentique, LLM)
+                systèmes IA de bout en bout en production (agents IA, RAG
+                agentique, LLM)
               </strong>
               , trois produits IA en prod.
             </p>
             <a href="#contact" className="cover-cta">
               <span>Discuter d&apos;un projet</span>
               <span className="cover-cta-arrow" aria-hidden="true">
-                ↓
+                →
               </span>
             </a>
           </div>
@@ -97,11 +98,11 @@ export default function Home() {
             </div>
             <div>
               <p className="intro-lede">
-                Trois produits IA en production construits de bout en bout
-                seul, plus une étude de cas benchmarkée sur FinanceBench. À
-                côté, j'accompagne en freelance des équipes qui veulent
-                construire un système IA en prod : agents, RAG, fine-tuning. Le
-                tout depuis un petit appart à Avignon.
+                Trois produits IA en production construits de bout en bout seul,
+                plus une étude de cas benchmarkée sur FinanceBench. À côté,
+                j'accompagne en freelance des équipes qui veulent construire un
+                système IA en prod : agents, RAG, fine-tuning. Le tout depuis un
+                petit appart à Avignon.
               </p>
             </div>
           </div>
@@ -193,10 +194,9 @@ export default function Home() {
               <span className="accent">.</span>
             </h2>
             <p className="cluster-lede">
-              Chacun est parti d'un problème que j'avais sous les yeux —
-              modèle, back, front, paiement, monitoring. Construits seul, de
-              bout en bout. Les chiffres ci-dessous sont ceux que je mesure,
-              pas des estimations.
+              Chacun est parti d'un problème que j'avais sous les yeux — modèle,
+              back, front, paiement, monitoring. Construits seul, de bout en
+              bout.
             </p>
           </div>
 
@@ -210,12 +210,19 @@ export default function Home() {
                   <span className="count">01</span>
                   <span className="tag">Portraits IA</span>
                 </span>
-                <h3 className="product-name">Shootingpro.co</h3>
+                <h3 className="product-name">Génération de portraits pro avec modèles Flux</h3>
                 <p className="product-tagline">
                   Quelques selfies en entrée, une série de portraits
                   professionnels en sortie — LinkedIn, CV, presse. Modèles Flux
                   fine-tunés en LoRA, sur un pipeline d'inférence GPU.
                 </p>
+                <dl className="product-audience">
+                  <dt>Pour qui</dt>
+                  <dd>
+                    Les personnes à la recherche d&apos;un shooting
+                    professionnel
+                  </dd>
+                </dl>
                 <div className="product-stats">
                   <div>
                     <div className="product-stat-value">Flux 1</div>
@@ -230,14 +237,17 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                <a
-                  href="https://shootingpro.co"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="product-cta"
-                >
-                  Visiter le site <span aria-hidden="true">→</span>
-                </a>
+                <div className="product-btns">
+                  <a
+                    href="https://shootingpro.co"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="product-btn"
+                  >
+                    Visiter le site <span aria-hidden="true">→</span>
+                  </a>
+                  <span className="product-btn product-btn-ghost product-btn-label">shootingpro.co</span>
+                </div>
               </div>
               <div className="product-visual product-live">
                 <ShootingproShowcase />
@@ -254,16 +264,20 @@ export default function Home() {
                 <span className="product-eyebrow">
                   <span className="count">02</span>
                   <span className="tag">
-                    Agent de qualification commerciale WhatsApp
+                    Agent LangGraph
                   </span>
                 </span>
-                <h3 className="product-name">Closechat.co</h3>
+                <h3 className="product-name">Agent de qualification commercial WhatsApp</h3>
                 <p className="product-tagline">
-                  Un agent LangGraph/LangChain branché sur l'API WhatsApp Cloud qui qualifie des
-                  leads dormants, encaisse les objections et pose le RDV
-                  directement dans le calendrier du commercial. Il ne propose un créneau que
-                  quand l'intérêt est réellement établi.
+                  Un agent LangGraph/LangChain branché sur l'API Meta WhatsApp
+                  qui qualifie des leads dormants, encaisse les objections et
+                  pose le RDV directement dans le calendrier du commercial.
+                  Uniquement quand l'intérêt est réellement établi.
                 </p>
+                <dl className="product-audience">
+                  <dt>Pour qui</dt>
+                  <dd>Les entrepreneurs ayant une audience</dd>
+                </dl>
                 <div className="product-stats">
                   <div>
                     <div className="product-stat-value">BANT</div>
@@ -272,24 +286,24 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                <a
-                  href="https://closechat.co"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="product-cta"
-                >
-                  Visiter le site <span aria-hidden="true">→</span>
-                </a>
+                <div className="product-btns">
+                  <a
+                    href="https://closechat.co"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="product-btn"
+                  >
+                    Visiter le site <span aria-hidden="true">→</span>
+                  </a>
+                  <span className="product-btn product-btn-ghost product-btn-label">closechat.co</span>
+                </div>
               </div>
               <div className="product-visual pv-1">
                 <div className="pv-num">Produit 02 · 2026</div>
                 <div className="pv-name">
-                  Closechat
-                  <br />
-                  IA<span style={{ color: "var(--accent-light)" }}>.</span>
+                  Closechat.co
                 </div>
                 <div className="pv-foot">
-                  <span>closechat.co</span>
                   <span>En prod</span>
                 </div>
               </div>
@@ -304,13 +318,19 @@ export default function Home() {
               <div className="product-meta">
                 <span className="product-eyebrow">
                   <span className="count">03</span>
-                  <span className="tag">Cold email / LinkedIn IA</span>
+                  <span className="tag">Prospection IA et automatisée</span>
                 </span>
-                <h3 className="product-name">Prospable.com</h3>
+                <h3 className="product-name">Cold email et LinkedIn en autopilote</h3>
                 <p className="product-tagline">
-                  Signaux d'intention détectés sur LinkedIn, prospects enrichis,
-                  cold emails et MP LinkedIn écrits selon le signal. Chauffe des boîtes en continu. Achat de boîtes Google à 4,5€, domaines. Tout est là.
+                  La prospection automatisée sur signaux d'intention et ICP détectés sur LinkedIn, prospects enrichis,
+                  cold emails et MP LinkedIn écrits selon le signal. Chauffe des
+                  boîtes en continu. Achat de boîtes Google à 4,5€, domaines.
+                  Tout est là.
                 </p>
+                <dl className="product-audience">
+                  <dt>Pour qui</dt>
+                  <dd>Les fondateurs, équipes B2B et indépendants</dd>
+                </dl>
                 <div className="product-stats">
                   <div>
                     <div className="product-stat-value">300 / jour</div>
@@ -319,23 +339,41 @@ export default function Home() {
                     </div>
                   </div>
                   <div>
-                    <div className="product-stat-value">Signaux d&apos;achat</div>
+                    <div className="product-stat-value">
+                      Signaux d&apos;achat
+                    </div>
                     <div className="product-stat-label">
-                      Offres d&apos;emploi, nouveaux recrutements et autres déclencheurs
+                      Offres d&apos;emploi, nouveaux recrutements et autres
+                      signaux
                     </div>
                   </div>
                 </div>
-                <a
-                  href="https://prospable.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="product-cta"
-                >
-                  Visiter le site <span aria-hidden="true">→</span>
-                </a>
+                <div className="product-btns">
+                  <a
+                    href="https://prospable.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="product-btn"
+                  >
+                    Réserver une démo <span aria-hidden="true">→</span>
+                  </a>
+                  <span className="product-btn product-btn-ghost product-btn-label">
+                    prospable.com
+                  </span>
+                </div>
               </div>
               <div className="product-visual product-live">
-                <ProspableDashboard />
+                <div className="product-frame">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/prospable.jpg"
+                    alt="Tableau de bord Prospable"
+                    className="product-shot"
+                    width={2013}
+                    height={1158}
+                    loading="lazy"
+                  />
+                </div>
               </div>
             </div>
           </section>
@@ -356,14 +394,11 @@ export default function Home() {
           <div className="profile-bleed-txt">
             <div className="profile-eb">Partie III / Mon CV de développeur</div>
             <h3 className="profile-h3">
-              Cinq startups et scaleups.{" "}
-              <span className="profile-em">
-                Intérim disruptée, telecom, épargne, e-learning
-              </span>
+              Cinq startups et scaleups.
             </h3>
             <p>
-              Avant de passer à l&apos;IA, j&apos;ai été développeur front/fullstack pendant
-              cinq ans.
+              Avant de passer à l&apos;IA, j&apos;ai été développeur
+              front/fullstack pendant cinq ans dans les secteurs de l'intérim, telecom, épargne, e-learning.
             </p>
             <div className="bleed-cv" id="scale-ups">
               <dl className="profile-tick cv-logos cv-table-lead">
@@ -373,17 +408,17 @@ export default function Home() {
                 </dt>
                 <dd>2020 — 2021</dd>
                 <dt>
-                  <CvLogo src="/reezocar.png" alt="Reezocar" />
+                  <CvLogo src="/reezocar.png" alt="Reezocar" tile />
                   Reezocar
                 </dt>
                 <dd>2021</dd>
                 <dt>
-                  <CvLogo src="/sewan.png" alt="Sewan Groupe" />
+                  <CvLogo src="/sewan.png" alt="Sewan Groupe" tile />
                   Sewan Groupe
                 </dt>
                 <dd>2021</dd>
                 <dt>
-                  <CvLogo src="/corum.svg" alt="Corum l'Épargne" />
+                  <CvLogo src="/corum.svg" alt="Corum l'Épargne" tile />
                   Corum l&apos;Épargne
                 </dt>
                 <dd>2022</dd>
@@ -494,7 +529,8 @@ export default function Home() {
                 </h4>
                 <p className="cert-item-body">
                   Agents IA, RAG, MM-RAG, RAG agentique, et fine-tuning de
-                  modèles en DPO, PPO, LoRA, QLoRA, instruction-tuning et PEFT avec Hugging Face.
+                  modèles en DPO, PPO, LoRA, QLoRA, instruction-tuning et PEFT
+                  avec Hugging Face.
                 </p>
               </article>
             </div>
@@ -531,9 +567,10 @@ export default function Home() {
             <span>/</span>
             <span>Études de cas</span>
           </div>
-          <h2 className="profile-h2">
-            Études de cas,{" "}
-            <span className="profile-em">preuve de pratique</span>
+          <h2 className="profile-h2 profile-h2-sm">
+            Études de cas.
+            <br />
+            <span className="profile-em">Preuves de pratique</span>
           </h2>
 
           {/* Etude de cas : pas un produit commercialise, donc traite a part —
@@ -550,22 +587,26 @@ export default function Home() {
               <div className="product-meta">
                 <span className="product-eyebrow">
                   <span className="count">01</span>
-                  <span className="tag">RAG agentique sur documents</span>
+                  <span className="tag">RAG sur documents</span>
                 </span>
-                <span className="case-badge">
-                  Étude de cas
-                </span>
-                <h3 className="product-name">Agentic-RAG</h3>
+                <span className="case-badge">Étude de cas</span>
+                <h3 className="product-name">RAG Agentique</h3>
                 <p className="product-tagline">
-                  Un agent qui répond sur des PDF longs — rapports financiers,
-                  documentation technique. Plutôt que de lui servir des extraits
-                  découpés à l'avance, je lui ai donné des outils de navigation
-                  qu'il utilise lui-même pour se déplacer dans le document :
-                  aller à une section, ouvrir un tableau, revenir en arrière.
-                  C'est ce choix qui fait les trois chiffres ci-dessous.
+                  Un multi-agent LangGraph qui répond sur des PDF longs —
+                  rapports financiers, documentation technique. Plutôt que de
+                  lui servir des extraits découpés à l'avance,{" "}
+                  <strong>
+                    j'ai développé outils de navigation que l'agent utilise
+                    lui-même{" "}
+                  </strong>
+                  pour se déplacer dans les documents : aller à une section,
+                  ouvrir un tableau, revenir en arrière. C'est ce choix qui fait
+                  les trois chiffres ci-dessous.
                 </p>
                 <p className="case-bench">
-                  Benchmarké sur <strong>FinanceBench</strong>, un jeu de donnés relevé
+                  Benchmarké sur <strong>un échantillon du FinanceBench</strong>{" "}
+                  (échantillon seulement), un jeu de données relevé de documents
+                  financiers AMD, Boeing, Intel
                 </p>
                 <div className="product-stats">
                   <div>
@@ -582,38 +623,38 @@ export default function Home() {
                   </div>
                   <div>
                     <div className="product-stat-value">÷ 2</div>
-                    <div className="product-stat-label">
-                      De latence
-                    </div>
+                    <div className="product-stat-label">De latence</div>
                   </div>
                 </div>
-                <div className="product-stack">
-                  <span className="product-stack-label">Stack</span>
-                  <span className="product-stack-items">
-                    LangGraph · LangSmith · tool calling · Pydantic · Mistral
-                    OCR/Embed/Small/Large · reranker Cohere · ChromaDB HNSW
-                    cosine + BM25 hybride · Django · React/TypeScript
-                  </span>
+                <div className="product-btns">
+                  <a
+                    href="https://docchat-agentic-rag.up.railway.app"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="product-btn"
+                  >
+                    Essayer la démo publique <span aria-hidden="true">→</span>
+                  </a>
+                  <a
+                    href="https://github.com/julienlucas/agentic-rag-with-tools"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="product-btn product-btn-ghost"
+                  >
+                    Voir sur GitHub
+                  </a>
                 </div>
-                <a
-                  href="https://docchat-agentic-rag.up.railway.app"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="product-cta"
-                >
-                  Essayer la démo publique <span aria-hidden="true">→</span>
-                </a>
               </div>
-              <div className="product-visual pv-2">
+              <div className="product-visual pv-2 pv-photo">
                 <div className="pv-num">Étude de cas 01 · 2026</div>
                 <div className="pv-name">
-                  Agentic
+                  RAG
                   <br />
-                  RAG<span style={{ color: "var(--accent-light)" }}>.</span>
+                  Agentique
+                  <span style={{ color: "var(--accent-light)" }}>.</span>
                 </div>
                 <div className="pv-foot">
-                  <span>FinanceBench</span>
-                  <span>Démo live</span>
+                  <span>Évalué sur FinanceBench</span>
                 </div>
               </div>
             </div>
@@ -622,49 +663,91 @@ export default function Home() {
           <div className="poc-layout">
             <div className="poc-layout-main">
               <div className="poc-list">
-                <a
-                  href="https://mm-rag-styleanalyzer.up.railway.app"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="poc-list-item"
-                >
-                  <span className="poc-list-num">N° 02 · Multimodal</span>
-                  <h3 className="poc-list-title">
-                    MM-RAG : recommandation de tenues par image
-                  </h3>
+                <div className="poc-list-row">
+                  <a
+                    href="https://mm-rag-styleanalyzer.up.railway.app"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="poc-list-item"
+                  >
+                    <span className="poc-list-num">N° 02 · RAG Multimodal</span>
+                    <div className="poc-list-body">
+                      <h3 className="poc-list-title">
+                        Recommandation de tenues par image
+                      </h3>
+                      <span className="poc-list-stack">MM-RAG + ConvNext</span>
+                    </div>
+                  </a>
+                  <a
+                    href="https://github.com/julienlucas/mm-rag-fashionstyle-analyzer"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="poc-list-git"
+                    aria-label="Voir sur GitHub — Recommandation de tenues par image"
+                  >
+                    Voir sur GitHub
+                  </a>
                   <span className="poc-list-arrow" aria-hidden="true">
                     →
                   </span>
-                </a>
-                <a
-                  href="https://pneumodiag.up.railway.app"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="poc-list-item"
-                >
-                  <span className="poc-list-num">N° 03 · Vision</span>
-                  <h3 className="poc-list-title">
-                    Diagnostic de pneumonies depuis une radio
-                  </h3>
+                </div>
+                <div className="poc-list-row">
+                  <a
+                    href="https://pneumodiag.up.railway.app"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="poc-list-item"
+                  >
+                    <span className="poc-list-num">N° 03 · DeepLearning</span>
+                    <div className="poc-list-body">
+                      <h3 className="poc-list-title">
+                        Diagnostic de pneumonies depuis une radio
+                      </h3>
+                      <span className="poc-list-stack">Fine-tuning PyTorch</span>
+                    </div>
+                  </a>
+                  <a
+                    href="https://github.com/julienlucas/pneumonia-diagnostic-assistant"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="poc-list-git"
+                    aria-label="Voir sur GitHub — Diagnostic de pneumonies depuis une radio"
+                  >
+                    Voir sur GitHub
+                  </a>
                   <span className="poc-list-arrow" aria-hidden="true">
                     →
                   </span>
-                </a>
-                <a
-                  href="https://fakefinder-nanobananapro.up.railway.app"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="poc-list-item"
-                >
-                  <span className="poc-list-num">N° 04 · Deepfake</span>
-                  <h3 className="poc-list-title">
-                    Différenciateur images réelles vs IA (NanoBanana, Flux,
-                    Midjourney)
-                  </h3>
+                </div>
+                <div className="poc-list-row">
+                  <a
+                    href="https://fakefinder-nanobananapro.up.railway.app"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="poc-list-item"
+                  >
+                    <span className="poc-list-num">N° 04 · DeepLearning</span>
+                    <div className="poc-list-body">
+                      <h3 className="poc-list-title">
+                        Différenciateur images réelles vs IA (NanoBananaPro, Flux,
+                        Midjourney, SD)
+                      </h3>
+                      <span className="poc-list-stack">Fine-tuning PyTorch</span>
+                    </div>
+                  </a>
+                  <a
+                    href="https://github.com/julienlucas/fake-detector-nanobananapro"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="poc-list-git"
+                    aria-label="Voir sur GitHub — Différenciateur images réelles vs IA"
+                  >
+                    Voir sur GitHub
+                  </a>
                   <span className="poc-list-arrow" aria-hidden="true">
                     →
                   </span>
-                </a>
+                </div>
               </div>
             </div>
             <figure className="poc-layout-media">
@@ -741,8 +824,9 @@ export default function Home() {
                 Ingénieur IA · Freelance ou CDI · Disponible
               </span>
               <p className="li-bill-avail">
-                Basé à Avignon, sur site 2-3 jours par semaine à Aix-en-Provence,
-                Marseille, Montpellier, Lyon et Paris. Full remote possible.
+                Basé à Avignon, sur site 2-3 jours par semaine à
+                Aix-en-Provence, Marseille, Montpellier, Lyon et Paris. Ou full
+                remote.
               </p>
               <h3 className="li-bill-h">
                 Agents, RAG, fine-tuning. <em>Dites-moi ce qui bloque.</em>

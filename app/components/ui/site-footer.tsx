@@ -24,8 +24,8 @@ export default function SiteFooter() {
             <h5>À propos</h5>
             <p>
               Basé à Avignon. Cinq ans à coder pour des startups et des
-              scale-ups, puis une bascule vers l&apos;IA fin 2024. Trois
-              produits en production, construits seul, de bout en bout.
+              scale-ups, bascule vers l'AI Engineering début 2025. Trois
+              produits IA en production, construits seul, de bout en bout.
             </p>
           </div>
 
