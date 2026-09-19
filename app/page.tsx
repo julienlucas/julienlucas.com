@@ -12,6 +12,52 @@ function CvLogo({ src, alt, tile }: { src: string; alt: string; tile?: boolean }
   );
 }
 
+const coverClients = [
+  { src: "/iziwork.jpg", name: "iziwork" },
+  { src: "/reezocar.png", name: "Reezocar", tile: true },
+  { src: "/sewan.png", name: "Sewan Groupe", tile: true },
+  { src: "/corum.svg", name: "CORUM l'Épargne", tile: true },
+  { src: "/smartch.jpeg", name: "Smartch" },
+];
+
+/* Bandeau defilant : la liste est doublee pour que la boucle se referme
+   sans saut, la seconde copie est invisible aux lecteurs d'ecran. */
+function CoverTrust() {
+  return (
+    <div className="cover-trust">
+      <p className="cover-trust-label">
+        Développeur 5 ans en startups/scaleups, ils m&apos;avaient fait confiance
+      </p>
+      <div className="cover-trust-strip">
+        <div className="cover-trust-track">
+          {[...coverClients, ...coverClients].map((client, index) => {
+            const copy = index >= coverClients.length;
+            return (
+              <span
+                className="cover-trust-item"
+                key={`${client.src}-${index}`}
+                aria-hidden={copy ? true : undefined}
+              >
+                <span
+                  className={
+                    client.tile
+                      ? "cover-trust-logo cover-trust-logo-tile"
+                      : "cover-trust-logo"
+                  }
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={client.src} alt="" />
+                </span>
+                {client.name}
+              </span>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Home() {
   return (
     <>
@@ -25,32 +71,35 @@ export default function Home() {
 
         <div className="profile-cover-stage">
           <div className="profile-cover-title">
-            <h1 className="profile-h1">
-              <span>Julien</span>
-              <span style={{ color: "var(--accent)" }}>Lucas.</span>
-            </h1>
-            <ul className="profile-cover-pills">
-              <li className="profile-cover-pill">Ingénierie IA appliquée</li>
-              <li className="profile-cover-pill">
-                Développeur front/fullstack 5 ans en startups et scaleups
-              </li>
-              <li className="profile-cover-pill">Produits IA</li>
-            </ul>
-            <p className="profile-tagline">
-              Cinq ans à coder pour des startups et scaleups. Aujourd'hui je
-              construis des{" "}
-              <strong>
-                systèmes IA de bout en bout en production (agents IA, RAG
-                agentique, LLM)
-              </strong>
-              , trois produits IA en prod.
-            </p>
-            <a href="#contact" className="cover-cta">
-              <span>Discuter d&apos;un projet</span>
-              <span className="cover-cta-arrow" aria-hidden="true">
-                →
-              </span>
-            </a>
+            <div className="profile-cover-title-main">
+              <h1 className="profile-h1">
+                <span>Julien</span>
+                <span style={{ color: "var(--accent)" }}>Lucas.</span>
+              </h1>
+              <ul className="profile-cover-pills">
+                <li className="profile-cover-pill">Ingénierie IA appliquée</li>
+                <li className="profile-cover-pill">
+                  Développeur front/fullstack 5 ans en startups et scaleups
+                </li>
+                <li className="profile-cover-pill">Produits IA</li>
+              </ul>
+              <p className="profile-tagline">
+                Cinq ans à coder pour des startups et scaleups. Aujourd'hui je
+                construis des{" "}
+                <strong>
+                  systèmes IA de bout en bout en production (agents IA, RAG
+                  agentique, LLM)
+                </strong>
+                , trois produits IA en prod.
+              </p>
+              <a href="#contact" className="cover-cta">
+                <span>Discuter d&apos;un projet</span>
+                <span className="cover-cta-arrow" aria-hidden="true">
+                  →
+                </span>
+              </a>
+            </div>
+            <CoverTrust />
           </div>
           <figure className="profile-portrait">
             {/* eslint-disable-next-line @next/next/no-img-element */}

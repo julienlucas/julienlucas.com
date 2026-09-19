@@ -318,6 +318,16 @@ nav.site-nav {
   min-width: 0;
   justify-content: center;
 }
+/* Le groupe titre porte ses marges auto : il se centre dans la
+   hauteur qui reste au-dessus du bandeau de references, lequel
+   garde son appui en bas de colonne. */
+.profile-cover-title-main {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  min-width: 0;
+  margin: auto 0;
+}
 .profile-cover-foot {
   font-family: var(--font-sora), "Sora", system-ui, sans-serif;
   font-size: 11px;
@@ -3493,4 +3503,102 @@ footer.site-footer {
 @media (max-width: 760px) {
   .product-stack { margin-top: 22px; gap: 4px 10px; }
   .product-section-case { padding-left: 14px; }
+}
+
+/* ─── Bandeau de confiance en bas de couverture ───
+   Il se loge dans le creux laisse sous le bouton plutot que
+   d'ajouter une ligne : la couverture garde sa hauteur d'ecran.
+   Un quart de viewport, pas plus. Les references defilent en
+   boucle et les deux bords se fondent dans le papier, pour que
+   l'entree et la sortie ne coupent jamais net. */
+.cover-trust {
+  --cover-trust-gap: 30px;
+  width: 25vw;
+  max-width: 25vw;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+.cover-trust-label {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  line-height: 1.45;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--p-g-4);
+  margin: 0;
+}
+.cover-trust-strip {
+  overflow: hidden;
+  /* Fondu aux deux bords : un masque en degrade, pas un calque
+     pose par-dessus, donc ca tient quel que soit le fond. */
+  -webkit-mask-image: linear-gradient(
+    90deg, transparent 0, #000 12%, #000 88%, transparent 100%);
+  mask-image: linear-gradient(
+    90deg, transparent 0, #000 12%, #000 88%, transparent 100%);
+}
+.cover-trust-track {
+  display: flex;
+  align-items: center;
+  gap: var(--cover-trust-gap);
+  /* Cette marge remplace le gap manquant en fin de piste : sans
+     elle, le retour a zero decale d'un demi-espace. */
+  padding-right: var(--cover-trust-gap);
+  width: max-content;
+  animation: cover-trust-scroll 34s linear infinite;
+}
+.cover-trust-strip:hover .cover-trust-track { animation-play-state: paused; }
+.cover-trust-item {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .02em;
+  white-space: nowrap;
+  color: var(--p-g-4);
+  transition: color .3s ease;
+}
+.cover-trust-logo {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  overflow: hidden;
+}
+.cover-trust-logo-tile { background: #fff; }
+.cover-trust-logo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: grayscale(1);
+  opacity: .65;
+  transition: opacity .3s ease, filter .3s ease;
+}
+.cover-trust-strip:hover .cover-trust-item { color: var(--p-ink); }
+.cover-trust-strip:hover .cover-trust-logo img {
+  filter: grayscale(0);
+  opacity: 1;
+}
+@keyframes cover-trust-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@media (max-width: 880px) {
+  /* La couverture passe sur une colonne : le quart de viewport ne
+     tient plus une reference, on rend sa largeur au bandeau. La
+     borne en vw le garde dans l'ecran meme si la colonne deborde. */
+  .cover-trust {
+    width: 100%;
+    max-width: calc(100vw - 44px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cover-trust-track { animation: none; }
 }
