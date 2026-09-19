@@ -210,7 +210,9 @@ export default function Home() {
                   <span className="count">01</span>
                   <span className="tag">Portraits IA</span>
                 </span>
-                <h3 className="product-name">Génération de portraits pro avec modèles Flux</h3>
+                <h3 className="product-name">
+                  Génération de portraits pro avec modèles Flux
+                </h3>
                 <p className="product-tagline">
                   Quelques selfies en entrée, une série de portraits
                   professionnels en sortie — LinkedIn, CV, presse. Modèles Flux
@@ -246,7 +248,9 @@ export default function Home() {
                   >
                     Visiter le site <span aria-hidden="true">→</span>
                   </a>
-                  <span className="product-btn product-btn-ghost product-btn-label">shootingpro.co</span>
+                  <span className="product-btn product-btn-ghost product-btn-label">
+                    shootingpro.co
+                  </span>
                 </div>
               </div>
               <div className="product-visual product-live">
@@ -263,11 +267,11 @@ export default function Home() {
               <div className="product-meta">
                 <span className="product-eyebrow">
                   <span className="count">02</span>
-                  <span className="tag">
-                    Agent LangGraph
-                  </span>
+                  <span className="tag">Agent LangGraph</span>
                 </span>
-                <h3 className="product-name">Agent de qualification commercial WhatsApp</h3>
+                <h3 className="product-name">
+                  Agent de qualification commercial WhatsApp
+                </h3>
                 <p className="product-tagline">
                   Un agent LangGraph/LangChain branché sur l'API Meta WhatsApp
                   qui qualifie des leads dormants, encaisse les objections et
@@ -295,14 +299,14 @@ export default function Home() {
                   >
                     Visiter le site <span aria-hidden="true">→</span>
                   </a>
-                  <span className="product-btn product-btn-ghost product-btn-label">closechat.co</span>
+                  <span className="product-btn product-btn-ghost product-btn-label">
+                    closechat.co
+                  </span>
                 </div>
               </div>
               <div className="product-visual pv-1">
                 <div className="pv-num">Produit 02 · 2026</div>
-                <div className="pv-name">
-                  Closechat.co
-                </div>
+                <div className="pv-name">Closechat.co</div>
                 <div className="pv-foot">
                   <span>En prod</span>
                 </div>
@@ -320,12 +324,14 @@ export default function Home() {
                   <span className="count">03</span>
                   <span className="tag">Prospection IA et automatisée</span>
                 </span>
-                <h3 className="product-name">Cold email et LinkedIn en autopilote</h3>
+                <h3 className="product-name">
+                  Cold email et LinkedIn en autopilote
+                </h3>
                 <p className="product-tagline">
-                  La prospection automatisée sur signaux d'intention et ICP détectés sur LinkedIn, prospects enrichis,
-                  cold emails et MP LinkedIn écrits selon le signal. Chauffe des
-                  boîtes en continu. Achat de boîtes Google à 4,5€, domaines.
-                  Tout est là.
+                  La prospection automatisée sur signaux d'intention et ICP
+                  détectés sur LinkedIn, prospects enrichis, cold emails et MP
+                  LinkedIn écrits selon le signal. Chauffe des boîtes en
+                  continu. Achat de boîtes Google à 4,5€, domaines. Tout est là.
                 </p>
                 <dl className="product-audience">
                   <dt>Pour qui</dt>
@@ -394,11 +400,14 @@ export default function Home() {
           <div className="profile-bleed-txt">
             <div className="profile-eb">Partie III / Mon CV de développeur</div>
             <h3 className="profile-h3">
-              Cinq startups et scaleups.
+              <span>Cinq startups et scaleups.</span>{" "}
+              <span className="profile-em">
+                Intérim disruptée, telecom, épargne, e-learning
+              </span>
             </h3>
             <p>
               Avant de passer à l&apos;IA, j&apos;ai été développeur
-              front/fullstack pendant cinq ans dans les secteurs de l'intérim, telecom, épargne, e-learning.
+              front/fullstack dont cinq ans en startups et scaleups.
             </p>
             <div className="bleed-cv" id="scale-ups">
               <dl className="profile-tick cv-logos cv-table-lead">
@@ -703,7 +712,9 @@ export default function Home() {
                       <h3 className="poc-list-title">
                         Diagnostic de pneumonies depuis une radio
                       </h3>
-                      <span className="poc-list-stack">Fine-tuning PyTorch</span>
+                      <span className="poc-list-stack">
+                        Fine-tuning PyTorch
+                      </span>
                     </div>
                   </a>
                   <a
@@ -729,10 +740,12 @@ export default function Home() {
                     <span className="poc-list-num">N° 04 · DeepLearning</span>
                     <div className="poc-list-body">
                       <h3 className="poc-list-title">
-                        Différenciateur images réelles vs IA (NanoBananaPro, Flux,
-                        Midjourney, SD)
+                        Différenciateur images réelles vs IA (NanoBananaPro,
+                        Flux, Midjourney, SD)
                       </h3>
-                      <span className="poc-list-stack">Fine-tuning PyTorch</span>
+                      <span className="poc-list-stack">
+                        Fine-tuning PyTorch
+                      </span>
                     </div>
                   </a>
                   <a
