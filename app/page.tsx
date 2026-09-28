@@ -421,7 +421,7 @@ export default function Home() {
                 <div className="product-frame">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src="/prospable.jpg"
+                    src="/prospable-c.jpg"
                     alt="Tableau de bord Prospable"
                     className="product-shot"
                     width={2013}
